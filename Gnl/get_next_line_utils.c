@@ -6,21 +6,11 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 12:20:05 by abrun             #+#    #+#             */
-/*   Updated: 2020/12/10 15:40:37 by abrun            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:37:23 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t		ft_strlen(char *s)
-{
-	size_t		counter;
-
-	counter = 0;
-	while (s[counter])
-		counter++;
-	return (counter);
-}
 
 char		*get_new_buf(char *buf)
 {

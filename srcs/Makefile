@@ -2,7 +2,7 @@ NAME		= fdf
 
 LIB_MLX		= libmlx.a
 
-SRCS		= main.c close_window.c free_param.c
+SRCS		= main.c close_window.c free_param.c init_param.c ../Gnl/get_next_line_utils.c ../Gnl/get_next_line.c
 
 MLX_SRCS	= ../Mlx_fcts/mlx_shaders.c ../Mlx_fcts/mlx_new_window.m ../Mlx_fcts/mlx_init_loop.m ../Mlx_fcts/mlx_new_image.m ../Mlx_fcts/mlx_xpm.c ../Mlx_fcts/mlx_int_str_to_wordtab.c
 

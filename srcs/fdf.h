@@ -12,6 +12,7 @@
 # include <math.h>
 # include "../Mlx_fcts/mlx.h"
 # include "../Libft/libft.h"
+# include "../Gnl/get_next_line.h"
 
 typedef struct	s_point
 {
@@ -21,9 +22,9 @@ typedef struct	s_point
 
 typedef struct	s_map
 {
-	int		**data;
-	int		width;
-	int		height;
+	char		**data;
+	size_t		width;
+	size_t		max_height;
 }				t_map;
 
 typedef struct	s_img
@@ -39,8 +40,8 @@ typedef struct	s_param
 {
 	void	*mlx;
 	void	*win;
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 	t_img	img;
 	t_map	map;
 }				t_param;
@@ -48,4 +49,10 @@ typedef struct	s_param
 int		ft_close_window(int key, t_param *param);
 
 void	free_param(t_param *param);
+
+int		init_map(t_map *map, char *file);
+
+int		init_param(t_param *param, char *file);
+
+void	init_param_len(t_param *param);
 #endif

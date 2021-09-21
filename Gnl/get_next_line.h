@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:06:29 by abrun             #+#    #+#             */
-/*   Updated: 2020/12/10 16:35:08 by abrun            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:38:31 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include "../Libft/libft.h"
+# define BUFFER_SIZE 10
 
 int				get_next_line(int fd, char **line);
 
@@ -29,8 +31,6 @@ int				fill_line(char *buf, char **line);
 size_t			get_len_buf(char *buf);
 
 char			*ft_strdup(const char *s);
-
-size_t			ft_strlen(char *s);
 
 char			*get_new_buf(char *buf);
 

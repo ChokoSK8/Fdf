@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 15:18:03 by abrun             #+#    #+#             */
-/*   Updated: 2020/11/23 10:07:32 by abrun            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:32:48 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,9 @@ int					ft_tolower(int c);
 
 int					ft_toupper(int c);
 
+int					ft_matlen(char **mat);
+
+char				**ft_add_line(char **mat, char *line);
+
+void				ft_print_mat(char **mat);
 #endif
