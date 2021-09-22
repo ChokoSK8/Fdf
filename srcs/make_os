@@ -33,15 +33,15 @@ lib:
 		make -C ../Libft
 
 mlx_t:
-		make -C ../Minilibx-linux
+		make -C ../Minilibx
 
-$(NAME): lib mlx_t $(OBJS)
-	$(CC) $(OBJS) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz ../Libft/libft.a ../Minilibx-linux/$(LIB_MLX) -o $(NAME)
+$(NAME):	lib mlx_t $(OBJS)
+			gcc $(FLAGS) -framework OpenGL -framework AppKit ../Libft/libft.a ../Mlx_fcts/$(LIB_MLX) $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS)
 		make clean -C ../Libft
-		make clean -C ../Minilibx-linux
+		make clean -C ../Mlx_fcts
 
 fclean:		clean
 			$(RM) $(NAME)

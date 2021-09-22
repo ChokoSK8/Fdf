@@ -10,7 +10,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../Mlx_fcts/mlx.h"
+# include "../Minilibx-linux/mlx.h"
 # include "../Libft/libft.h"
 # include "../Gnl/get_next_line.h"
 
