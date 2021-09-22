@@ -20,11 +20,17 @@ typedef struct	s_point
 	int		y;
 }				t_point;
 
+typedef struct	s_ptdouble
+{
+	double		x;
+	double		y;
+}				t_ptdouble;
+
 typedef struct	s_map
 {
 	char		**data;
-	size_t		width;
-	size_t		max_height;
+	size_t		max_width;
+	size_t		height;
 }				t_map;
 
 typedef struct	s_img
@@ -34,6 +40,8 @@ typedef struct	s_img
 	int		endian;
 	char	*data;
 	void	*image;
+	int		coef_x;
+	int		coef_y;
 }				t_img;
 
 typedef struct	s_param
@@ -54,5 +62,15 @@ int		init_map(t_map *map, char *file);
 
 int		init_param(t_param *param, char *file);
 
-void	init_param_len(t_param *param);
+void	init_param_len_and_coef(t_param *param);
+
+void	display_squares(t_img *mg, t_map map);
+
+void	print_cases(t_img *img, t_point pt, int size_line);
+
+void	print_diamonds(t_img *img, t_point pt, int size_line);
+
+char	*ft_strdup_fdf(const char *s1);
+
+char	**ft_add_line_fdf(char **mat, char *line);
 #endif
