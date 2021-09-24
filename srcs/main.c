@@ -10,7 +10,7 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	init_param(&param, av[1]);
-	ft_print_mat(param.map.data);
+//	ft_print_mat(param.map.data);
 	param.mlx = mlx_init();
 	param.img.image = mlx_new_image(param.mlx, param.width, param.height);
 	param.img.data = mlx_get_data_addr(param.img.image, &param.img.bpp, &param.img.size_line, &param.img.endian);

@@ -22,6 +22,7 @@ char	*ft_strdup_fdf(const char *s1)
 			dst[count++] = *s1;
 		s1++;
 	}
+	dst[count] = 0;
 	return ((char *)dst);
 }
 
