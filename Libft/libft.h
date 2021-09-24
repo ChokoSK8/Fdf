@@ -117,4 +117,10 @@ int					ft_matlen(char **mat);
 char				**ft_add_line(char **mat, char *line);
 
 void				ft_print_mat(char **mat);
+
+size_t					ft_digitlen_in_str(char *str);
+
+int					ft_is_sign_digit(char c, char d);
+
+void				ft_print_mati(int **mat, int max_width);
 #endif

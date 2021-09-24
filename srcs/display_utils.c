@@ -1,20 +1,15 @@
 #include "fdf.h"
 
-t_apex		get_apex_of_diamonds(t_point pt, t_img img, t_display disp)
+t_apex		get_apex_of_diamonds(t_apex apex, t_display disp)
 {
-	t_apex	apex;
-
-	apex.a = get_apex_a(disp, pt);
-	apex.b.x = apex.a.x + sin(convert(90 - disp.angle)) * img.coef_x;
-	apex.b.y = apex.a.y + cos(convert(90 - disp.angle)) * img.coef_x;
-	apex.c.x = apex.a.x - cos(convert(90 - disp.angle)) * img.coef_y;
-	apex.c.y = apex.a.y + sin(convert(90 - disp.angle)) * img.coef_y;
-	apex.d.x = apex.c.x + sin(convert(90 - disp.angle)) * img.coef_x;
-	apex.d.y = apex.c.y + cos(convert(90 - disp.angle)) * img.coef_x;
+	apex.a = get_apex(disp, apex.a);
+	apex.b = get_apex(disp, apex.b);
+	apex.c = get_apex(disp, apex.c);
+	apex.d = get_apex(disp, apex.d);
 	return (apex);
 }
 
-t_ptdouble		get_apex_a(t_display disp, t_point pt)
+t_ptdouble		get_apex(t_display disp, t_ptdouble pt)
 {
 	t_ptdouble	pt_a;
 
