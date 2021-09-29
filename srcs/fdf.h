@@ -13,6 +13,7 @@
 # include "../Minilibx-linux/mlx.h"
 # include "../Libft/libft.h"
 # include "../Gnl/get_next_line.h"
+# define ABS(x) ((x) < 0 ? (-x):(x))
 
 typedef struct	s_point
 {
@@ -31,6 +32,29 @@ typedef struct	s_vect
 	double		x;
 	double		y;
 }				t_vect;
+
+typedef struct	s_line
+{
+	double	a;
+	double	b;
+}				t_line;
+
+typedef struct	s_eraser
+{
+	t_line		a;
+	t_line		b;
+	t_ptdouble	pt_a;
+	t_ptdouble	pt_c;
+	t_ptdouble	pt_d;
+}				t_eraser;
+
+typedef struct	s_lines
+{
+	t_line	ab;
+	t_line	ac;
+	t_line	bd;
+	t_line	cd;
+}				t_lines;
 
 typedef struct	s_display
 {
@@ -51,6 +75,7 @@ typedef struct	s_apex
 typedef struct	s_map
 {
 	char		**data;
+	int			**mati;
 	size_t		max_width;
 	size_t		height;
 }				t_map;
@@ -114,11 +139,45 @@ t_display	init_display(t_img img);
 
 double		convert(double degre);
 
+double		convert_inv(double rad);
+
 void		display_line(t_ptdouble apex_a, t_ptdouble apex_b, int size_line, t_img *img);
 
 t_ptdouble	**get_mat_pos(t_map map);
 
 void		print_mat_pos(t_ptdouble **mat);
 
-int		**ft_char_to_int_mat(char **matc, int max_width);
+int			**ft_char_to_int_mat(char **matc, int max_width);
+
+void		free_matc(char **matc);
+
+t_apex		get_apex_inside(t_apex apex);
+
+void		print_inside_diamonds(t_img *img, t_apex apex);
+
+int			is_pts_equal(t_ptdouble pt_a, t_ptdouble pt_b);
+
+t_ptdouble	get_one_apex_inside(t_ptdouble pt_a, t_ptdouble pt_b);
+
+t_apex		get_apex_biggest_line(t_apex apex);
+
+t_ptdouble	get_pt_perpendiculare(t_lines lines, t_ptdouble pt);
+
+t_lines		get_eq_lines(t_apex apex);
+
+t_eraser	get_erasers(t_lines lines, t_apex apex);
+
+double		get_angle_from_pts(t_ptdouble pt_a, t_ptdouble pt_b, t_ptdouble pt_c);
+
+t_eraser	init_eraser(t_line line_a, t_line line_b, t_apex apex, int n);
+
+t_vect		get_vect_from_line(t_line line);
+
+void		erase_inside(t_eraser eraser, t_lines lines, t_img *img);
+
+t_ptdouble	get_pt_perp(t_lines lines, t_eraser eraser, t_ptdouble count, t_line original);
+
+t_lines		get_l_tmp(t_lines lines, t_eraser eraser);
+
+int		is_line_equal_to_eraser(t_line line, t_eraser eraser);
 #endif

@@ -1,5 +1,5 @@
 #include "libft.h"
-
+#include <stdio.h>
 void	ft_print_mati(int**mat, int max_width)
 {
 	int	x;

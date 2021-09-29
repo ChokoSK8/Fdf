@@ -66,5 +66,6 @@ int	**ft_char_to_int_mat(char **matc, int max_width)
 		pt.y++;
 	}
 	mati[pt.y] = 0;
+	free_matc(matc);
 	return (mati);
 }

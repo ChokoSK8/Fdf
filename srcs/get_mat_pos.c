@@ -10,16 +10,16 @@ t_ptdouble	**get_mat_pos(t_map map)
 	if (!mat)
 		return (0);
 	pt.y = 0;
-	while (map.data[pt.y])
+	while (map.mati[pt.y])
 	{
-		mat[pt.y] = malloc(sizeof(t_ptdouble) * (ft_strlen(map.data[pt.y]) + 1));
+		mat[pt.y] = malloc(sizeof(t_ptdouble) * (map.max_width + 1));
 		if (!mat[pt.y])
 			return (0);
 		pt.x = 0;
-		while (map.data[pt.y][pt.x])
+		while (pt.x < (int)map.max_width)
 		{
-			mat[pt.y][pt.x].x = pt.x - 0.1 * (map.data[pt.y][pt.x] - 48);
-			mat[pt.y][pt.x].y = pt.y - 0.1 * (map.data[pt.y][pt.x] - 48);
+			mat[pt.y][pt.x].x = pt.x - 0.1 * (map.mati[pt.y][pt.x]);
+			mat[pt.y][pt.x].y = pt.y - 0.1 * (map.mati[pt.y][pt.x]);
 			pt.x++;
 		}
 		mat[pt.y][pt.x].x = -1;
