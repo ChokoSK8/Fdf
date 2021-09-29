@@ -251,8 +251,14 @@ t_ptdouble	get_pt_perp(t_lines lines, t_eraser eraser, t_ptdouble pt, t_line l_o
 	double		dist_2;
 
 	l_tmp = get_l_tmp(lines, eraser);
-//	printf("l_tmp.ab -> a : %f ; b : %f\n", l_tmp.ab.a, l_tmp.ab.b);
-//	printf("l_tmp.bd -> a : %f ; b : %f\n", l_tmp.bd.a, l_tmp.bd.b);
+	printf("eraser.a -> a : %f | b : %f\n", eraser.a.a, eraser.a.b);
+	printf("eraser.b -> a : %f | b : %f\n", eraser.b.a, eraser.b.b);
+	printf("line_ab -> a : %f | b : %f\n", lines.ab.a, lines.ab.b);
+	printf("line_ac -> a : %f | b : %f\n", lines.ac.a, lines.ac.b);
+	printf("line_bd -> a : %f | b : %f\n", lines.bd.a, lines.bd.b);
+	printf("line_cd -> a : %f | b : %f\n", lines.cd.a, lines.cd.b);
+	printf("l_tmp.ab -> a : %f ; b : %f\n", l_tmp.ab.a, l_tmp.ab.b);
+	printf("l_tmp.bd -> a : %f ; b : %f\n", l_tmp.bd.a, l_tmp.bd.b);
 	l_perp.a = (-1) / l_original.a;
 	l_perp.b = pt.y - pt.x * l_perp.a;
 	pt_1.x = (l_perp.b - l_tmp.ab.b) / (l_tmp.ab.a - l_perp.a);
@@ -261,7 +267,9 @@ t_ptdouble	get_pt_perp(t_lines lines, t_eraser eraser, t_ptdouble pt, t_line l_o
 	pt_2.y = pt_2.x * l_perp.a + l_perp.b;
 	dist_1 = get_dist_btw_2_pts(pt_1, pt);
 	dist_2 = get_dist_btw_2_pts(pt_2, pt);
-	if (ABS(l_tmp.ab.a - l_perp.a) > 0.1 && dist_1 < dist_2)
+	printf("pt_2 : (%f, %f)\n", pt_2.x, pt_2.y);
+	printf("pt_1 : (%f, %f)\n", pt_1.x, pt_1.y);
+	if (ABS(pt_1.x) < 10000 && dist_1 < dist_2)
 		return (pt_1);
 	return (pt_2);
 }
@@ -309,8 +317,8 @@ t_lines		get_l_tmp(t_lines lines, t_eraser eraser)
 
 int		is_line_equal_to_eraser(t_line line, t_eraser eraser)
 {
-	if ((line.a == eraser.a.a && line.b == eraser.a.b) ||
-	 			(line.a == eraser.b.a && line.b == eraser.b.b))
+	if ((line.a - eraser.a.a == 0 && line.b - eraser.a.b == 0) ||
+	 			(line.a - eraser.b.a == 0 && line.b - eraser.b.b == 0))
 		return (1);
 	return (0);
 }
