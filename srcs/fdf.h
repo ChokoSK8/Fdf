@@ -48,6 +48,21 @@ typedef struct	s_eraser
 	t_ptdouble	pt_d;
 }				t_eraser;
 
+typedef struct	s_line_perp
+{
+	double		a;
+	double		b;
+	double		x_1;
+	double		x_2;
+}				t_line_perp;
+
+typedef struct	s_param_perp
+{
+	t_line_perp		ab;
+	t_line_perp		ac;
+	t_line_perp		bd;
+}				t_param_perp;
+
 typedef struct	s_lines
 {
 	t_line	ab;
@@ -151,6 +166,8 @@ int			**ft_char_to_int_mat(char **matc, int max_width);
 
 void		free_matc(char **matc);
 
+void		free_mati(int **matc);
+
 t_apex		get_apex_inside(t_apex apex);
 
 void		print_inside_diamonds(t_img *img, t_apex apex);
@@ -173,11 +190,13 @@ t_eraser	init_eraser(t_line line_a, t_line line_b, t_apex apex, int n);
 
 t_vect		get_vect_from_line(t_line line);
 
-void		erase_inside(t_eraser eraser, t_lines lines, t_img *img);
+void		erase_inside(t_apex apex, t_lines lines, t_img *img);
 
-t_ptdouble	get_pt_perp(t_lines lines, t_eraser eraser, t_ptdouble count, t_line original);
+t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble count, t_line eraser, t_apex apex);
 
-t_lines		get_l_tmp(t_lines lines, t_eraser eraser);
+t_param_perp		get_l_tmp(t_lines lines, t_line eraser, t_apex apex);
 
-int		is_line_equal_to_eraser(t_line line, t_eraser eraser);
+int		is_line_equal_to_eraser(t_line line, t_line eraser);
+
+int		is_pt_between_x(double x_a, double x_b, double x_c);
 #endif

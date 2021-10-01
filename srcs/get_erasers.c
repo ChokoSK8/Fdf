@@ -9,28 +9,28 @@ t_eraser	get_erasers(t_lines lines, t_apex apex)
 	angle = get_angle_from_pts(apex.c, apex.a, apex.b);
 	eraser = init_eraser(lines.ac, lines.ab, apex, 1);
 	tmp = get_angle_from_pts(apex.a, apex.b, apex.d);
-//	printf("angle A : %f\n", angle);
+	printf("angle A : %f\n", angle);
 	if (angle < tmp)
 	{
 		eraser = init_eraser(lines.ab, lines.bd, apex, 2);
 		angle = tmp;
-//	printf("angle B : %f\n", angle);
+	printf("angle B : %f\n", angle);
 	}
 	tmp = get_angle_from_pts(apex.b, apex.d, apex.c);
 	if (angle < tmp)
 	{
 		eraser = init_eraser(lines.bd, lines.cd, apex, 3);
 		angle = tmp;
-//	printf("angle D : %f\n", angle);
+	printf("angle D : %f\n", angle);
 	}
 	tmp = get_angle_from_pts(apex.d, apex.c, apex.a);
 	if (angle < tmp)
 	{
 		eraser = init_eraser(lines.cd, lines.ac, apex, 4);
 		angle = tmp;
-//	printf("angle C : %f\n", angle);
+	printf("angle C : %f\n", angle);
 	}
-//	printf("angle : %f\n", angle);
+	printf("angle : %f\n", angle);
 	return (eraser);
 }
 

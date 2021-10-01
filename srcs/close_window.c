@@ -2,12 +2,10 @@
 
 int		ft_close_window(int key, t_param *param)
 {
-	if (key == 53)
+	if (key == 65307)
 	{
-		mlx_destroy_window(param->mlx, param->win);
 		free_param(param);
-		printf("\nTest des leaks\n");
-		system("leaks fdf | grep leaked\n");
+		mlx_destroy_window(param->mlx, param->win);
 		exit(0);
 	}
 	return (1);

@@ -13,7 +13,7 @@ int		main(int ac, char **av)
 //	ft_print_mat(param.map.data);
 
 	param.map.mati = ft_char_to_int_mat(param.map.data, param.map.max_width);
-//	ft_print_mati(param.map.mati, param.map.max_width);
+	ft_print_mati(param.map.mati, param.map.max_width);
 	
 	//get_mat_pos
 	t_ptdouble	**mat_pos = get_mat_pos(param.map);

@@ -241,259 +241,91 @@ t_lines		get_eq_lines(t_apex apex)
 	return (lines);
 }
 
-t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble pt, t_line eraser, t_apex apex)
+t_ptdouble	get_pt_perp(t_lines lines, t_eraser eraser, t_ptdouble pt, t_line l_original)
 {
-	t_param_perp		l_tmp;
-	t_line				l_perp;
-	t_ptdouble			pt_1;
-	t_ptdouble			pt_2;
-	t_ptdouble			pt_3;
-	double				dist_1;
-	double				dist_2;
-	double				dist_3;
+	t_lines		l_tmp;
+	t_line		l_perp;
+	t_ptdouble	pt_1;
+	t_ptdouble	pt_2;
+	double		dist_1;
+	double		dist_2;
 
 	pt_1.x = 0;
-	l_tmp = get_l_tmp(lines, eraser, apex);
-/*	print_apex(apex);
-	printf("lines.ab -> a : %f | b : %f\n", lines.ab.a, lines.ab.b);
-	printf("lines.ac -> a : %f | b : %f\n", lines.ac.a, lines.ac.b);
-	printf("lines.bd -> a : %f | b : %f\n", lines.bd.a, lines.bd.b);
-	printf("lines.cd -> a : %f | b : %f\n", lines.cd.a, lines.cd.b);
-	printf("l_tmp.ab -> a : %f | b : %f\n", l_tmp.ab.a, l_tmp.ab.b);
-	printf("l_tmp.ac -> a : %f | b : %f\n", l_tmp.ac.a, l_tmp.ac.b);
-	printf("l_tmp.bd -> a : %f | b : %f\n", l_tmp.bd.a, l_tmp.bd.b);
-	printf("eraser -> a : %f | b : %f\n", eraser.a, eraser.b);*/
-	l_perp.a = (-1) / eraser.a;
+	l_tmp = get_l_tmp(lines, eraser);
+	if (!l_tmp.ab.a && !l_tmp.ab.b)
+		return (pt_1);
+	printf("eraser.a -> a : %f | b : %f\n", eraser.a.a, eraser.a.b);
+	printf("eraser.b -> a : %f | b : %f\n", eraser.b.a, eraser.b.b);
+	printf("line_ab -> a : %f | b : %f\n", lines.ab.a, lines.ab.b);
+	printf("line_ac -> a : %f | b : %f\n", lines.ac.a, lines.ac.b);
+	printf("line_bd -> a : %f | b : %f\n", lines.bd.a, lines.bd.b);
+	printf("line_cd -> a : %f | b : %f\n", lines.cd.a, lines.cd.b);
+	printf("l_tmp.ab -> a : %f ; b : %f\n", l_tmp.ab.a, l_tmp.ab.b);
+	printf("l_tmp.bd -> a : %f ; b : %f\n", l_tmp.bd.a, l_tmp.bd.b);
+	l_perp.a = (-1) / l_original.a;
 	l_perp.b = pt.y - pt.x * l_perp.a;
 	pt_1.x = (l_perp.b - l_tmp.ab.b) / (l_tmp.ab.a - l_perp.a);
 	pt_1.y = pt_1.x * l_perp.a + l_perp.b;
 	pt_2.x = (l_perp.b - l_tmp.bd.b) / (l_tmp.bd.a - l_perp.a);
 	pt_2.y = pt_2.x * l_perp.a + l_perp.b;
-	pt_3.x = (l_perp.b - l_tmp.ac.b) / (l_tmp.ac.a - l_perp.a);
-	pt_3.y = pt_3.x * l_perp.a + l_perp.b;
 	dist_1 = get_dist_btw_2_pts(pt_1, pt);
 	dist_2 = get_dist_btw_2_pts(pt_2, pt);
-	dist_3 = get_dist_btw_2_pts(pt_3, pt);
-/*	printf("dist_1 : %f\n", dist_1);
-	printf("dist_2 : %f\n", dist_2);
-	printf("dist_3 : %f\n", dist_3);
-	printf("res_1 : %f\n", pt_1.x - l_tmp.ab.x_1);
-	printf("res_2 : %f\n", pt_1.x - l_tmp.ab.x_2);*/
-	if (is_pt_between_x(l_tmp.ab.x_1, pt_1.x, l_tmp.ab.x_2)
-		&& (!is_pt_between_x(l_tmp.bd.x_1, pt_2.x, l_tmp.bd.x_2) ||(dist_1 <= dist_2))
-			&& (!is_pt_between_x(l_tmp.ac.x_1, pt_3.x, l_tmp.ac.x_2) ||(dist_1 <= dist_3)))
-				return (pt_1);
-	if (is_pt_between_x(l_tmp.bd.x_1, pt_2.x, l_tmp.bd.x_2))
-		if ((!is_pt_between_x(l_tmp.ab.x_1, pt_1.x, l_tmp.ab.x_2)) ||(dist_2 <= dist_1))
-			if ((!is_pt_between_x(l_tmp.ac.x_1, pt_3.x, l_tmp.ac.x_2)) ||(dist_2 <= dist_3))
-				return (pt_2);
-	if (is_pt_between_x(l_tmp.ac.x_1, pt_3.x, l_tmp.ac.x_2))
-		if ((!is_pt_between_x(l_tmp.ab.x_1, pt_1.x, l_tmp.ab.x_2)) ||(dist_3 <= dist_1))
-			if ((!is_pt_between_x(l_tmp.bd.x_1, pt_2.x, l_tmp.bd.x_2)) ||(dist_3 <= dist_2))
-				return (pt_3);
-/*	printf("pt_1 : (%f, %f)\n", pt_1.x, pt_1.y);
-	printf("pt_2 : (%f, %f)\n", pt_2.x, pt_2.y);
-	printf("pt_3 : (%f, %f)\n", pt_3.x, pt_3.y);
-	printf("l_tmp.ab : (%f, %f)\n", l_tmp.ab.x_1, l_tmp.ab.x_2);
-	printf("l_tmp.bd : (%f, %f)\n", l_tmp.bd.x_1, l_tmp.bd.x_2);
-	printf("l_tmp.cd : (%f, %f)\n", l_tmp.ac.x_1, l_tmp.ac.x_2);*/
-	t_ptdouble none;
-	none.x = 0;
-	none.y = 0;
-	return (none);
+//	printf("pt_2 : (%f, %f)\n", pt_2.x, pt_2.y);
+//	printf("pt_1 : (%f, %f)\n", pt_1.x, pt_1.y);
+	if (ABS(pt_1.x) < 10000 && dist_1 < dist_2)
+		return (pt_1);
+	return (pt_2);
 }
 
-int		is_pt_between_x(double x_a, double x_b, double x_c)
+t_lines		get_l_tmp(t_lines lines, t_eraser eraser)
 {
-	double		dist_ab;
-	double		dist_bc;
-	double		dist_ac;
+	t_lines		l_tmp;
+	int		is_assign;
 
-	dist_ab = x_b - x_a;
-	dist_bc = x_c - x_b;
-	dist_ac = x_c - x_a;
-/*	printf("dist_ab : %f\n", dist_ab);
-	printf("dist_bc : %f\n", dist_bc);
-	printf("dist_ac : %f\n", dist_ac);*/
-	if (dist_ab < dist_ac && dist_bc < dist_ac)
-		return (1);
-	return (0);
-}
-
-t_param_perp		get_l_tmp(t_lines lines, t_line eraser, t_apex apex)
-{
-	t_param_perp	l_tmp;
-
-	if (is_line_equal_to_eraser(lines.ab, eraser))
+	l_tmp.ab.a = 0;
+	l_tmp.ab.b = 0;
+	is_assign = 0;
+	if (!is_line_equal_to_eraser(lines.ab, eraser))
 	{
-		l_tmp.ab.a = lines.ac.a;
-		l_tmp.ab.b = lines.ac.b;
-		if (apex.a.x < apex.c.x)
-		{
-			l_tmp.ab.x_1 = apex.a.x;
-			l_tmp.ab.x_2 = apex.c.x;
-		}
-		else
-		{
-			l_tmp.ab.x_1 = apex.c.x;
-			l_tmp.ab.x_2 = apex.a.x;
-		}
-
-		l_tmp.ac.a = lines.bd.a;
-		l_tmp.ac.b = lines.bd.b;
-		if (apex.b.x < apex.d.x)
-		{
-			l_tmp.ac.x_1 = apex.b.x;
-			l_tmp.ac.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.ac.x_1 = apex.d.x;
-			l_tmp.ac.x_2 = apex.b.x;
-		}
-
-		l_tmp.bd.a = lines.cd.a;
-		l_tmp.bd.b = lines.cd.b;
-		if (apex.c.x < apex.d.x)
-		{
-			l_tmp.bd.x_1 = apex.c.x;
-			l_tmp.bd.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.bd.x_1 = apex.d.x;
-			l_tmp.bd.x_2 = apex.c.x;
-		}
+		is_assign = 1;
+		l_tmp.ab = lines.ab;
 	}
-	if (is_line_equal_to_eraser(lines.cd, eraser))
+	if (!is_line_equal_to_eraser(lines.ac, eraser))
 	{
-		l_tmp.ab.a = lines.ac.a;
-		l_tmp.ab.b = lines.ac.b;
-		if (apex.a.x < apex.c.x)
+		if (!is_assign)
 		{
-			l_tmp.ab.x_1 = apex.a.x;
-			l_tmp.ab.x_2 = apex.c.x;
+			is_assign = 1;
+			l_tmp.ab = lines.ac;
 		}
-		else
-		{
-			l_tmp.ab.x_1 = apex.c.x;
-			l_tmp.ab.x_2 = apex.a.x;
-		}
-
-		l_tmp.ac.a = lines.bd.a;
-		l_tmp.ac.b = lines.bd.b;
-		if (apex.b.x < apex.d.x)
-		{
-			l_tmp.ac.x_1 = apex.b.x;
-			l_tmp.ac.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.ac.x_1 = apex.d.x;
-			l_tmp.ac.x_2 = apex.b.x;
-		}
-
-		l_tmp.bd.a = lines.ab.a;
-		l_tmp.bd.b = lines.ab.b;
-		if (apex.a.x < apex.b.x)
-		{
-			l_tmp.bd.x_1 = apex.a.x;
-			l_tmp.bd.x_2 = apex.b.x;
-		}
-		else
-		{
-			l_tmp.bd.x_1 = apex.b.x;
-			l_tmp.bd.x_2 = apex.a.x;
-		}
+		l_tmp.bd = lines.ac;
 	}
-	if (is_line_equal_to_eraser(lines.bd, eraser))
+	if (!is_line_equal_to_eraser(lines.bd, eraser))
 	{
-		l_tmp.ab.a = lines.ac.a;
-		l_tmp.ab.b = lines.ac.b;
-		if (apex.a.x < apex.c.x)
+		if (!is_assign)
 		{
-			l_tmp.ab.x_1 = apex.a.x;
-			l_tmp.ab.x_2 = apex.c.x;
+			is_assign = 1;
+			l_tmp.ab = lines.bd;
 		}
-		else
-		{
-			l_tmp.ab.x_1 = apex.c.x;
-			l_tmp.ab.x_2 = apex.a.x;
-		}
-
-		l_tmp.ac.a = lines.ab.a;
-		l_tmp.ac.b = lines.ab.b;
-		if (apex.a.x < apex.b.x)
-		{
-			l_tmp.ac.x_1 = apex.a.x;
-			l_tmp.ac.x_2 = apex.b.x;
-		}
-		else
-		{
-			l_tmp.ac.x_1 = apex.b.x;
-			l_tmp.ac.x_2 = apex.a.x;
-		}
-
-		l_tmp.bd.a = lines.cd.a;
-		l_tmp.bd.b = lines.cd.b;
-		if (apex.c.x < apex.d.x)
-		{
-			l_tmp.bd.x_1 = apex.c.x;
-			l_tmp.bd.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.bd.x_1 = apex.c.x;
-			l_tmp.bd.x_2 = apex.d.x;
-		}
+		l_tmp.bd = lines.bd;
 	}
-	if (is_line_equal_to_eraser(lines.ac, eraser))
+	if (!is_line_equal_to_eraser(lines.cd, eraser))
 	{
-		l_tmp.ab.a = lines.ab.a;
-		l_tmp.ab.b = lines.ab.b;
-		if (apex.a.x < apex.b.x)
+		if (!is_assign)
 		{
-			l_tmp.ab.x_1 = apex.a.x;
-			l_tmp.ab.x_2 = apex.b.x;
+			is_assign = 1;
+			l_tmp.ab = lines.cd;
 		}
-		else
-		{
-			l_tmp.ab.x_1 = apex.b.x;
-			l_tmp.ab.x_2 = apex.a.x;
-		}
-
-		l_tmp.ac.a = lines.bd.a;
-		l_tmp.ac.b = lines.bd.b;
-		if (apex.b.x < apex.d.x)
-		{
-			l_tmp.ac.x_1 = apex.b.x;
-			l_tmp.ac.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.ac.x_1 = apex.d.x;
-			l_tmp.ac.x_2 = apex.b.x;
-		}
-
-		l_tmp.bd.a = lines.cd.a;
-		l_tmp.bd.b = lines.cd.b;
-		if (apex.c.x < apex.d.x)
-		{
-			l_tmp.bd.x_1 = apex.c.x;
-			l_tmp.bd.x_2 = apex.d.x;
-		}
-		else
-		{
-			l_tmp.bd.x_1 = apex.d.x;
-			l_tmp.bd.x_2 = apex.c.x;
-		}
+		l_tmp.bd = lines.cd;
 	}
+	if (!is_assign)
+		return (l_tmp);
 	return (l_tmp);
 }
 
-int		is_line_equal_to_eraser(t_line line, t_line eraser)
+int		is_line_equal_to_eraser(t_line line, t_eraser eraser)
 {
-	if (line.a - eraser.a == 0 && line.b - eraser.b == 0)
+	if ((line.a - eraser.a.a == 0 && line.b - eraser.a.b == 0) ||
+	 			(line.a - eraser.b.a == 0 && line.b - eraser.b.b == 0))
 		return (1);
 	return (0);
 }
