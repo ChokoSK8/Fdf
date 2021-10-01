@@ -21,6 +21,12 @@ typedef struct	s_point
 	int		y;
 }				t_point;
 
+typedef struct	s_dists
+{
+	double	h;
+	double	v;
+}				t_dists;
+
 typedef struct	s_ptdouble
 {
 	double		x;
@@ -33,6 +39,12 @@ typedef struct	s_vect
 	double		y;
 }				t_vect;
 
+typedef struct	s_vects
+{
+	t_vect	h;
+	t_vect	v;
+}				t_vects;
+
 typedef struct	s_line
 {
 	double	a;
@@ -41,11 +53,9 @@ typedef struct	s_line
 
 typedef struct	s_eraser
 {
-	t_line		a;
-	t_line		b;
+	t_line		line;
 	t_ptdouble	pt_a;
-	t_ptdouble	pt_c;
-	t_ptdouble	pt_d;
+	t_ptdouble	pt_b;
 }				t_eraser;
 
 typedef struct	s_line_perp
@@ -108,12 +118,13 @@ typedef struct	s_img
 
 typedef struct	s_param
 {
-	void	*mlx;
-	void	*win;
-	size_t	width;
-	size_t	height;
-	t_img	img;
-	t_map	map;
+	void		*mlx;
+	void		*win;
+	size_t		width;
+	size_t		height;
+	t_img		img;
+	t_map		map;
+	t_ptdouble	**mat_pos;
 }				t_param;
 
 int		ft_close_window(int key, t_param *param);
@@ -134,7 +145,7 @@ void	print_diamonds(t_img *img,t_ptdouble **mat_pos, t_point pt, t_display disp)
 
 char	*ft_strdup_fdf(const char *s1);
 
-char	**ft_add_line_fdf(char **mat, char *line);
+char	**ft_add_line_fdf(char ***mat, char *line);
 
 t_apex	get_apex_of_diamonds(t_apex apex, t_display disp);
 
@@ -164,9 +175,15 @@ void		print_mat_pos(t_ptdouble **mat);
 
 int			**ft_char_to_int_mat(char **matc, int max_width);
 
+int			*fill_one_lign(char **matc, t_point pt, int max_width);
+
+int			assign_one_digit(char **matc, t_point pt);
+
 void		free_matc(char **matc);
 
 void		free_mati(int **matc);
+
+void		free_mat_pos(t_ptdouble **mat_pos);
 
 t_apex		get_apex_inside(t_apex apex);
 
@@ -186,11 +203,19 @@ t_eraser	get_erasers(t_lines lines, t_apex apex);
 
 double		get_angle_from_pts(t_ptdouble pt_a, t_ptdouble pt_b, t_ptdouble pt_c);
 
-t_eraser	init_eraser(t_line line_a, t_line line_b, t_apex apex, int n);
+t_eraser	init_eraser(t_ptdouble pt_a, t_ptdouble pt_b, t_line line);
 
 t_vect		get_vect_from_line(t_line line);
 
 void		erase_inside(t_apex apex, t_lines lines, t_img *img);
+
+void	erase_from_one_lign(t_eraser eraser, t_lines lines, t_img *img, t_apex apex);
+
+int		is_perp_ok(t_ptdouble perp);
+
+t_ptdouble	get_next_ptdouble(t_ptdouble pt, t_vect vect);
+
+void		put_pixels(t_img *img, t_ptdouble pt);
 
 t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble count, t_line eraser, t_apex apex);
 
@@ -199,4 +224,6 @@ t_param_perp		get_l_tmp(t_lines lines, t_line eraser, t_apex apex);
 int		is_line_equal_to_eraser(t_line line, t_line eraser);
 
 int		is_pt_between_x(double x_a, double x_b, double x_c);
+
+int		is_apex_equal(t_apex apex);
 #endif

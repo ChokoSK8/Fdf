@@ -39,9 +39,9 @@ int		init_map(t_map *map, char *file)
 	map->data[0] = 0;
 	map->height = 0;
 	map->max_width = 0;
-	while (ret)
+	while (ret > 0)
 	{
-		map->data = ft_add_line(map->data, line);
+		map->data = ft_add_line_fdf(&map->data, line);
 		if (map->max_width < ft_digitlen_in_str(map->data[count]))
 			map->max_width = ft_digitlen_in_str(map->data[count]);
 		if (!map->data)
@@ -51,6 +51,7 @@ int		init_map(t_map *map, char *file)
 		count++;
 		map->height++;
 	}
+	free(line);
 	close(fd);
 	return (1);
 }

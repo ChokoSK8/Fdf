@@ -123,4 +123,6 @@ size_t					ft_digitlen_in_str(char *str);
 int					ft_is_sign_digit(char c, char d);
 
 void				ft_print_mati(int **mat, int max_width);
+
+size_t					ft_strcpy(char *dst, const char *src);
 #endif

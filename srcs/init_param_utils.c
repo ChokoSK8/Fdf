@@ -26,25 +26,26 @@ char	*ft_strdup_fdf(const char *s1)
 	return ((char *)dst);
 }
 
-char		**ft_add_line_fdf(char **mat, char *line)
+char		**ft_add_line_fdf(char ***mat, char *line)
 {
 	int		matlen;
 	char	**new_mat;
 	int		count;
 
-	matlen = ft_matlen(mat);
+	matlen = ft_matlen(*mat);
 	new_mat = malloc(sizeof(char *) * (matlen + 2));
 	count = 0;
-	while (mat[count])
+	while (matlen--)
 	{
-		new_mat[count] = ft_strdup_fdf(mat[count]);
+		new_mat[count] = ft_strdup(*mat[count]);
 		if (!new_mat[count])
 			return (0);
 		count++;
 	}
-	new_mat[count] = ft_strdup_fdf(line);
+	new_mat[count] = ft_strdup(line);
 	if (!new_mat[count++])
 		return (0);
 	new_mat[count] = 0;
+	free_matc(*mat);
 	return (new_mat);
 }
