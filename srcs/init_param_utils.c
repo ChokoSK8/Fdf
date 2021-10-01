@@ -5,7 +5,7 @@ char	*ft_strdup_fdf(const char *s1)
 	size_t			s1_len;
 	unsigned char	*dst;
 	unsigned int	len;
-	int			count;
+	int				count;
 
 	s1_len = ft_strlen(s1);
 	if (s1_len == 1)
@@ -13,7 +13,8 @@ char	*ft_strdup_fdf(const char *s1)
 	else
 		s1_len = (s1_len / 2) + 2;
 	len = s1_len;
-	if (!(dst = malloc(sizeof(char) * s1_len)))
+	dst = malloc(sizeof(char) * s1_len);
+	if (!dst)
 		return (NULL);
 	count = 0;
 	while (*s1)
@@ -26,7 +27,7 @@ char	*ft_strdup_fdf(const char *s1)
 	return ((char *)dst);
 }
 
-char		**ft_add_line_fdf(char ***mat, char *line)
+char	**ft_add_line_fdf(char ***mat, char *line)
 {
 	int		matlen;
 	char	**new_mat;

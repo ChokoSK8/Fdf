@@ -5,7 +5,6 @@ t_ptdouble	**get_mat_pos(t_map map)
 	t_point		pt;
 	t_ptdouble	**mat;
 
-	
 	mat = malloc(sizeof(t_ptdouble *) * (map.height + 1));
 	if (!mat)
 		return (0);

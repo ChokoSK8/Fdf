@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int		init_param(t_param *param, char *file)
+int	init_param(t_param *param, char *file)
 {
 	int		ret;
 
@@ -19,7 +19,7 @@ void	init_param_len_and_coef(t_param *param)
 	param->height = param->img.coef_y * (param->map.height) * 2;
 }
 
-int		init_map(t_map *map, char *file)
+int	init_map(t_map *map, char *file)
 {
 	char		*line;
 	int			fd;

@@ -68,9 +68,10 @@ typedef struct	s_line_perp
 
 typedef struct	s_param_perp
 {
-	t_line_perp		ab;
-	t_line_perp		ac;
-	t_line_perp		bd;
+	t_line_perp		l_1;
+	t_line_perp		l_2;
+	t_line_perp		l_3;
+	t_line_perp		l_4;
 }				t_param_perp;
 
 typedef struct	s_lines
@@ -219,11 +220,19 @@ void		put_pixels(t_img *img, t_ptdouble pt);
 
 t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble count, t_line eraser, t_apex apex);
 
-t_param_perp		get_l_tmp(t_lines lines, t_line eraser, t_apex apex);
+t_param_perp		init_param_perp(t_lines lines, t_line eraser, t_apex apex);
+
+void			init_lines_perp(t_param_perp *param);
+
+void			organize_param_perp(t_param_perp *param);
+
+t_line_perp		assign_line_perp(t_line line, t_ptdouble pt_a, t_ptdouble pt_b);
 
 int		is_line_equal_to_eraser(t_line line, t_line eraser);
 
 int		is_pt_between_x(double x_a, double x_b, double x_c);
 
 int		is_apex_equal(t_apex apex);
+
+int		is_ptdouble_equal(t_ptdouble pt_a, t_ptdouble pt_b);
 #endif

@@ -19,7 +19,7 @@ void	display_squares(t_img *img, t_ptdouble **mat_pos)
 	}
 }
 
-t_display		init_display(t_img img)
+t_display	init_display(t_img img)
 {
 	t_display		disp;
 
@@ -56,13 +56,6 @@ void	print_diamonds(t_img *img, t_ptdouble **mat_pos,
 			display_line(apex.c, apex.d, img->size_line, img);
 		}
 	}
-}
-
-int	is_ptdouble_equal(t_ptdouble pt_a, t_ptdouble pt_b)
-{
-	if (pt_a.x == pt_b.x && pt_a.y == pt_b.y)
-		return (1);
-	return (0);
 }
 
 int	is_apex_equal(t_apex apex)

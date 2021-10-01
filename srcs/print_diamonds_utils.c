@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-t_apex		get_apex_of_diamonds(t_apex apex, t_display disp)
+t_apex	get_apex_of_diamonds(t_apex apex, t_display disp)
 {
 	apex.a = get_apex(disp, apex.a);
 	apex.b = get_apex(disp, apex.b);
@@ -9,7 +9,7 @@ t_apex		get_apex_of_diamonds(t_apex apex, t_display disp)
 	return (apex);
 }
 
-t_ptdouble		get_apex(t_display disp, t_ptdouble pt)
+t_ptdouble	get_apex(t_display disp, t_ptdouble pt)
 {
 	t_ptdouble	pt_a;
 
@@ -18,12 +18,13 @@ t_ptdouble		get_apex(t_display disp, t_ptdouble pt)
 	return (pt_a);
 }
 
-void		display_line(t_ptdouble apex_a, t_ptdouble apex_b, int size_line, t_img *img)
+void	display_line(t_ptdouble apex_a, t_ptdouble apex_b,
+		int size_line, t_img *img)
 {
 	t_vect		vect;
 	t_ptdouble	count;
 	double		dist;
-	int		pos;
+	int			pos;
 
 	dist = get_dist_btw_2_pts(apex_a, apex_b);
 	count.x = apex_a.x;
