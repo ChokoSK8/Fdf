@@ -1,13 +1,13 @@
 #include "fdf.h"
 
-t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble pt,
+t_ptdbl	get_pt_perp(t_lines lines, t_ptdbl pt,
 		t_line eraser, t_apex apex)
 {
-	t_param_perp	param;
-	t_line			l_perp;
-	t_ptdouble		pt_perp;
+	t_pperp	param;
+	t_line	l_perp;
+	t_ptdbl	pt_perp;
 
-	param = init_param_perp(lines, eraser, apex);
+	param = init_pperp(lines, eraser, apex);
 	l_perp.a = (-1) / eraser.a;
 	l_perp.b = pt.y - pt.x * l_perp.a;
 	pt_perp.x = (l_perp.b - param.l_1.b) / (param.l_1.a - l_perp.a);
@@ -27,9 +27,9 @@ t_ptdouble	get_pt_perp(t_lines lines, t_ptdouble pt,
 	return (pt_perp);
 }
 
-t_param_perp	init_param_perp(t_lines lines, t_line eraser, t_apex apex)
+t_pperp	init_pperp(t_lines lines, t_line eraser, t_apex apex)
 {
-	t_param_perp	param;
+	t_pperp	param;
 
 	init_lines_perp(&param);
 	if (!is_line_equal_to_eraser(lines.ab, eraser))
@@ -44,7 +44,7 @@ t_param_perp	init_param_perp(t_lines lines, t_line eraser, t_apex apex)
 	return (param);
 }
 
-void	init_lines_perp(t_param_perp *param)
+void	init_lines_perp(t_pperp *param)
 {
 	param->l_1.a = 0;
 	param->l_1.b = 0;
@@ -56,9 +56,9 @@ void	init_lines_perp(t_param_perp *param)
 	param->l_4.b = 0;
 }
 
-t_line_perp	assign_line_perp(t_line line, t_ptdouble pt_a, t_ptdouble pt_b)
+t_lperp	assign_line_perp(t_line line, t_ptdbl pt_a, t_ptdbl pt_b)
 {
-	t_line_perp	l_p;
+	t_lperp	l_p;
 
 	l_p.a = line.a;
 	l_p.b = line.b;
@@ -75,7 +75,7 @@ t_line_perp	assign_line_perp(t_line line, t_ptdouble pt_a, t_ptdouble pt_b)
 	return (l_p);
 }
 
-void	organize_param_perp(t_param_perp *param)
+void	organize_param_perp(t_pperp *param)
 {
 	if (param->l_1.a == 0 && param->l_1.b == 0)
 		param->l_1 = param->l_4;

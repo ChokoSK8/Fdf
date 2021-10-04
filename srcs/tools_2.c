@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int	is_pts_equal(t_ptdouble pt_a, t_ptdouble pt_b)
+int	is_pts_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
 	if (((int)pt_a.x != (int)pt_b.x
 			&& (pt_a.y - pt_b.y > 0.2 || pt_a.y - pt_b.y < -0.2))
@@ -46,7 +46,7 @@ int	is_line_equal_to_eraser(t_line line, t_line eraser)
 	return (0);
 }
 
-int	is_ptdouble_equal(t_ptdouble pt_a, t_ptdouble pt_b)
+int	is_ptdouble_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
 	if (pt_a.x == pt_b.x && pt_a.y == pt_b.y)
 		return (1);

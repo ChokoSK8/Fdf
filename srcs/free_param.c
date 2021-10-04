@@ -21,7 +21,7 @@ void	free_mati(int **mati)
 	free(mati);
 }
 
-void	free_mat_pos(t_ptdouble **mat_pos)
+void	free_mat_pos(t_ptdbl **mat_pos)
 {
 	int	n;
 

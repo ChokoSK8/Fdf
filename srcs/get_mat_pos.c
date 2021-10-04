@@ -1,17 +1,17 @@
 #include "fdf.h"
 
-t_ptdouble	**get_mat_pos(t_map map)
+t_ptdbl	**get_mat_pos(t_map map)
 {
-	t_point		pt;
-	t_ptdouble	**mat;
+	t_point	pt;
+	t_ptdbl	**mat;
 
-	mat = malloc(sizeof(t_ptdouble *) * (map.height + 1));
+	mat = malloc(sizeof(t_ptdbl *) * (map.height + 1));
 	if (!mat)
 		return (0);
 	pt.y = 0;
 	while (map.mati[pt.y])
 	{
-		mat[pt.y] = malloc(sizeof(t_ptdouble) * (map.max_width + 1));
+		mat[pt.y] = malloc(sizeof(t_ptdbl) * (map.max_width + 1));
 		if (!mat[pt.y])
 			return (0);
 		pt.x = 0;

@@ -27,18 +27,20 @@ char	*ft_strdup_fdf(const char *s1)
 	return ((char *)dst);
 }
 
-char	**ft_add_line_fdf(char ***mat, char *line)
+char	**ft_add_line_fdf(char **mat, char *line)
 {
 	int		matlen;
 	char	**new_mat;
 	int		count;
 
-	matlen = ft_matlen(*mat);
+	matlen = ft_matlen(mat);
 	new_mat = malloc(sizeof(char *) * (matlen + 2));
+	if (!new_mat)
+		return (0);
 	count = 0;
 	while (matlen--)
 	{
-		new_mat[count] = ft_strdup(*mat[count]);
+		new_mat[count] = ft_strdup(mat[count]);
 		if (!new_mat[count])
 			return (0);
 		count++;
@@ -47,6 +49,25 @@ char	**ft_add_line_fdf(char ***mat, char *line)
 	if (!new_mat[count++])
 		return (0);
 	new_mat[count] = 0;
-	free_matc(*mat);
+	free_matc(mat);
 	return (new_mat);
+}
+
+int	get_map_ready(t_map *map)
+{
+	map->data = malloc(sizeof(char *));
+	if (!map->data)
+		return (0);
+	map->data[0] = 0;
+	map->height = 0;
+	map->max_width = 0;
+	return (1);
+}
+
+void	increase_params(int *count, t_map *map)
+{
+	if (map->max_width < ft_digitlen_in_str(map->data[*count]))
+		map->max_width = ft_digitlen_in_str(map->data[*count]);
+	*count += 1;
+	map->height++;
 }

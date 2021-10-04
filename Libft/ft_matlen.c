@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int		ft_matlen(char **mat)
+int	ft_matlen(char **mat)
 {
 	int		matlen;
 

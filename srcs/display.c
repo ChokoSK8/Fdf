@@ -1,17 +1,18 @@
 #include "fdf.h"
 
-void	display_squares(t_img *img, t_ptdouble **mat_pos)
+void	display_squares(t_img *img, t_ptdbl **mat_pos)
 {
 	t_point		pt;
-	t_display	disp;
+	t_disp		disp;
 
-	disp = init_display(*img);
+	disp = init_disp(*img);
 	pt.y = 0;
 	while (mat_pos[pt.y])
 	{
 		pt.x = 0;
 		while (mat_pos[pt.y][pt.x].x != -1)
 		{
+			printf("pt : (%d, %d)\n", pt.x, pt.y);
 			print_diamonds(img, mat_pos, pt, disp);
 			pt.x++;
 		}
@@ -19,9 +20,9 @@ void	display_squares(t_img *img, t_ptdouble **mat_pos)
 	}
 }
 
-t_display	init_display(t_img img)
+t_disp	init_disp(t_img img)
 {
-	t_display		disp;
+	t_disp		disp;
 
 	disp.origin.x = 500;
 	disp.origin.y = 50;
@@ -33,8 +34,8 @@ t_display	init_display(t_img img)
 	return (disp);
 }
 
-void	print_diamonds(t_img *img, t_ptdouble **mat_pos,
-		t_point pt, t_display disp)
+void	print_diamonds(t_img *img, t_ptdbl **mat_pos,
+		t_point pt, t_disp disp)
 {
 	t_apex		apex;
 	t_lines		lines;
@@ -49,7 +50,8 @@ void	print_diamonds(t_img *img, t_ptdouble **mat_pos,
 		if (!is_apex_equal(apex))
 		{
 			lines = get_eq_lines(apex);
-			erase_inside(apex, lines, img);
+//			if (pt.y == 9)
+				erase_inside(apex, lines, img);
 			display_line(apex.a, apex.b, img->size_line, img);
 			display_line(apex.b, apex.d, img->size_line, img);
 			display_line(apex.a, apex.c, img->size_line, img);
@@ -60,14 +62,16 @@ void	print_diamonds(t_img *img, t_ptdouble **mat_pos,
 
 int	is_apex_equal(t_apex apex)
 {
-	if (is_ptdouble_equal(apex.a, apex.b)
+	if ((is_ptdouble_equal(apex.a, apex.b)
 		&& is_ptdouble_equal(apex.a, apex.c)
 		&& is_ptdouble_equal(apex.a, apex.d))
+		|| is_ptdouble_equal(apex.a, apex.d)
+		|| is_ptdouble_equal(apex.c, apex.b))
 		return (1);
 	return (0);
 }
 
-void	put_pixels(t_img *img, t_ptdouble pt)
+void	put_pxl(t_img *img, t_ptdbl pt)
 {
 	int	pos;
 
@@ -75,4 +79,14 @@ void	put_pixels(t_img *img, t_ptdouble pt)
 	img->data[pos] = 10;
 	img->data[pos + 1] = 100;
 	img->data[pos + 2] = 20;
+}
+
+void	put_pixels(t_img *img, t_ptdbl pt)
+{
+	int	pos;
+
+	pos = ((int)pt.x * 4 + img->size_line * (int)pt.y);
+	img->data[pos] = 0;
+	img->data[pos + 1] = 0;
+	img->data[pos + 2] = 0;
 }

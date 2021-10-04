@@ -1,20 +1,22 @@
 #include "libft.h"
-#include <stdio.h>
+
 void	ft_print_mati(int**mat, int max_width)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while(mat[y])
+	while (mat[y])
 	{
 		x = 0;
-		while(x < max_width)
+		while (x < max_width)
 		{
-			printf("%d ", mat[y][x]);
+			ft_putnbr(mat[y][x], 1);
 			x++;
+			if (x < max_width)
+				write(1, 32, 1);
 		}
-		printf("\n");
-	y++;
+		write(1, "\n", 1);
+		y++;
 	}
 }

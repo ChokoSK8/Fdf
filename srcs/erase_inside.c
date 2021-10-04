@@ -2,21 +2,21 @@
 
 void	erase_inside(t_apex apex, t_lines lines, t_img *img)
 {
-	t_eraser	eraser;
+	t_erase	eraser;
 
-	eraser = init_eraser(apex.a, apex.c, lines.ac);
+	eraser = init_erase(apex.a, apex.c, lines.ac);
 	erase_from_one_lign(eraser, lines, img, apex);
-	eraser = init_eraser(apex.a, apex.b, lines.ab);
+	eraser = init_erase(apex.a, apex.b, lines.ab);
 	erase_from_one_lign(eraser, lines, img, apex);
-	eraser = init_eraser(apex.c, apex.d, lines.cd);
+	eraser = init_erase(apex.c, apex.d, lines.cd);
 	erase_from_one_lign(eraser, lines, img, apex);
-	eraser = init_eraser(apex.b, apex.d, lines.bd);
+	eraser = init_erase(apex.b, apex.d, lines.bd);
 	erase_from_one_lign(eraser, lines, img, apex);
 }
 
-t_eraser	init_eraser(t_ptdouble pt_a, t_ptdouble pt_b, t_line line)
+t_erase	init_erase(t_ptdbl pt_a, t_ptdbl pt_b, t_line line)
 {
-	t_eraser	eraser;
+	t_erase	eraser;
 
 	eraser.pt_a = pt_a;
 	eraser.pt_b = pt_b;
@@ -24,14 +24,14 @@ t_eraser	init_eraser(t_ptdouble pt_a, t_ptdouble pt_b, t_line line)
 	return (eraser);
 }
 
-void	erase_from_one_lign(t_eraser eraser, t_lines lines,
+void	erase_from_one_lign(t_erase eraser, t_lines lines,
 		t_img *img, t_apex apex)
 {
-	t_ptdouble	tmp;
-	t_dists		dist;
-	t_vects		vect;
-	t_ptdouble	count;
-	t_ptdouble	perp;
+	t_ptdbl	tmp;
+	t_dists	dist;
+	t_vects	vect;
+	t_ptdbl	count;
+	t_ptdbl	perp;
 
 	vect.v = get_vect_btw_2_pts(eraser.pt_a, eraser.pt_b);
 	dist.v = get_dist_btw_2_pts(eraser.pt_a, eraser.pt_b);
@@ -47,23 +47,24 @@ void	erase_from_one_lign(t_eraser eraser, t_lines lines,
 			while (get_dist_btw_2_pts(tmp, count) < dist.h)
 			{
 				put_pixels(img, count);
-				count = get_next_ptdouble(count, vect.h);
+			//	put_pxl(img, count);
+				count = get_next_ptdbl(count, vect.h);
 			}
 		}
-		tmp = get_next_ptdouble(tmp, vect.v);
+		tmp = get_next_ptdbl(tmp, vect.v);
 	}
 }
 
-int	is_perp_ok(t_ptdouble perp)
+int	is_perp_ok(t_ptdbl perp)
 {
 	if (perp.x == 0 && perp.y == 0)
 		return (0);
 	return (1);
 }
 
-t_ptdouble	get_next_ptdouble(t_ptdouble pt, t_vect vect)
+t_ptdbl	get_next_ptdbl(t_ptdbl pt, t_vect vect)
 {
-	t_ptdouble	witness;
+	t_ptdbl	witness;
 
 	witness = pt;
 	while ((int)pt.x == (int)witness.x

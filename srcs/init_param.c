@@ -31,25 +31,16 @@ int	init_map(t_map *map, char *file)
 	if (!fd)
 		return (-1);
 	ret = get_next_line(fd, &line);
-	if (ret < 1)
-		return (ret);
-	map->data = malloc(sizeof(char *));
-	if (!map->data)
+	if (ret < 1 || !get_map_ready(map))
 		return (-1);
-	map->data[0] = 0;
-	map->height = 0;
-	map->max_width = 0;
 	while (ret > 0)
 	{
-		map->data = ft_add_line_fdf(&map->data, line);
-		if (map->max_width < ft_digitlen_in_str(map->data[count]))
-			map->max_width = ft_digitlen_in_str(map->data[count]);
+		map->data = ft_add_line_fdf(map->data, line);
 		if (!map->data)
 			return (-1);
 		free(line);
 		ret = get_next_line(fd, &line);
-		count++;
-		map->height++;
+		increase_params(&count, map);
 	}
 	free(line);
 	close(fd);

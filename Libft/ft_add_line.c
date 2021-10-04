@@ -1,7 +1,6 @@
-# include "libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-char		**ft_add_line(char **mat, char *line)
+char	**ft_add_line(char **mat, char *line)
 {
 	int		matlen;
 	char	**new_mat;
