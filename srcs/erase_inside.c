@@ -18,8 +18,10 @@ t_erase	init_erase(t_ptdbl pt_a, t_ptdbl pt_b, t_line line)
 {
 	t_erase	eraser;
 
-	eraser.pt_a = pt_a;
-	eraser.pt_b = pt_b;
+	eraser.pt_a.x = pt_a.x;
+	eraser.pt_a.y = pt_a.y;
+	eraser.pt_b.x = pt_b.x;
+	eraser.pt_b.y = pt_b.y;
 	eraser.line = line;
 	return (eraser);
 }
@@ -47,7 +49,6 @@ void	erase_from_one_lign(t_erase eraser, t_lines lines,
 			while (get_dist_btw_2_pts(tmp, count) < dist.h)
 			{
 				put_pixels(img, count);
-			//	put_pxl(img, count);
 				count = get_next_ptdbl(count, vect.h);
 			}
 		}

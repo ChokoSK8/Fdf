@@ -27,8 +27,7 @@ void	display_line(t_ptdbl apex_a, t_ptdbl apex_b,
 	int			pos;
 
 	dist = get_dist_btw_2_pts(apex_a, apex_b);
-	count.x = apex_a.x;
-	count.y = apex_a.y;
+	count = apex_a;
 	vect = get_vect_btw_2_pts(apex_a, apex_b);
 	while (get_dist_btw_2_pts(count, apex_a) < dist)
 	{

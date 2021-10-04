@@ -2,7 +2,7 @@ NAME		= fdf
 
 LIB_MLX		= libmlx.a
 
-SRCS		= main.c close_window.c free_param.c init_param.c init_param_utils.c ../Gnl/get_next_line_utils.c ../Gnl/get_next_line.c display.c get_mat_pos.c char_to_int.c erase_inside.c print_diamonds_utils.c get_pt_perp.c tools.c tools_2.c get_altitude.c
+SRCS		= main.c close_window.c free_param.c init_param.c init_param_utils.c ../Gnl/get_next_line_utils.c ../Gnl/get_next_line.c display.c get_mat_pos.c char_to_int.c erase_inside.c print_diamonds_utils.c get_pt_perp.c get_pt_perp_utils.c tools.c tools_2.c
 
 MLX_SRCS	= ../Mlx_fcts/mlx_shaders.c ../Mlx_fcts/mlx_new_window.m ../Mlx_fcts/mlx_init_loop.m ../Mlx_fcts/mlx_new_image.m ../Mlx_fcts/mlx_xpm.c ../Mlx_fcts/mlx_int_str_to_wordtab.c
 

@@ -8,9 +8,6 @@ int	main(int ac, char **av)
 		return (0);
 	init_param(&param, av[1]);
 	param.map.mati = ft_char_to_int_mat(param.map.data, param.map.max_width);
-	param.altz = get_altz(param.map.mati, param.map.max_width);
-	printf("altz.len : %d\n", param.altz.len);
-	print_tab(param.altz.data, param.altz.len);
 	param.mat_pos = get_mat_pos(param.map);
 	param.mlx = mlx_init();
 	param.img.image = mlx_new_image(param.mlx, param.width, param.height);

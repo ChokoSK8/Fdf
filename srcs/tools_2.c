@@ -2,12 +2,9 @@
 
 int	is_pts_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
-	if (((int)pt_a.x != (int)pt_b.x
-			&& (pt_a.y - pt_b.y > 0.2 || pt_a.y - pt_b.y < -0.2))
-		|| ((int)pt_a.y != (int)pt_b.y
-			&& (pt_a.x - pt_b.x > 0.2 || pt_a.x - pt_b.x < -0.2)))
-		return (0);
-	return (1);
+	if ((int)pt_a.x == (int)pt_b.x && (int)pt_a.y == (int)pt_b.y)
+		return (1);
+	return (0);
 }
 
 t_lines	get_eq_lines(t_apex apex)

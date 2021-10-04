@@ -65,12 +65,28 @@ typedef struct s_line_perp
 	double		x_2;
 }				t_lperp;
 
+typedef struct s_ptperp
+{
+	double	x;
+	double	y;
+	int	btw;
+}				t_ptperp;
+
 typedef struct s_param_perp
 {
 	t_lperp		l_1;
 	t_lperp		l_2;
 	t_lperp		l_3;
 	t_lperp		l_4;
+	t_ptdbl		pt_1;
+	t_ptdbl		pt_2;
+	t_ptdbl		pt_3;
+	int		btw_1;
+	int		btw_2;
+	int		btw_3;
+	double		dist_1;
+	double		dist_2;
+	double		dist_3;
 }				t_pperp;
 
 typedef struct s_lines
@@ -87,6 +103,7 @@ typedef struct s_display
 	t_vect		vect_x;
 	t_vect		vect_y;
 	double		angle;
+	int		alt;
 }				t_disp;
 
 typedef struct s_apex
@@ -116,12 +133,6 @@ typedef struct s_img
 	double	coef_y;
 }				t_img;
 
-typedef struct s_tab
-{
-	int	*data;
-	int	len;
-}				t_tab;
-
 typedef struct s_param
 {
 	void		*mlx;
@@ -131,7 +142,6 @@ typedef struct s_param
 	t_img		img;
 	t_map		map;
 	t_ptdbl		**mat_pos;
-	t_tab		altz;
 }				t_param;
 
 int		ft_close_window(int key, t_param *param);
@@ -238,6 +248,8 @@ t_ptdbl	get_pt_perp(t_lines lines, t_ptdbl count,
 
 t_pperp	init_pperp(t_lines lines, t_line eraser, t_apex apex);
 
+t_ptdbl	pick_perp(t_pperp param);
+
 void	init_lines_perp(t_pperp *param);
 
 void	organize_param_perp(t_pperp *param);
@@ -256,9 +268,9 @@ int		*add_n_in_tab(int *tab, int n, int tab_len);
 
 int		is_n_in_tab(int n, int *tab, int tab_len);
 
-t_tab		get_altz(int **mati, int max_width);
-
 void	organize_in_order_tab(int **tab, int tab_len);
 
 void	swap_in_tab(int *a, int *b);
+
+void	init_param_btw(t_pperp *param);
 #endif
