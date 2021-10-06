@@ -11,10 +11,10 @@ void	ft_print_mati(int**mat, int max_width)
 		x = 0;
 		while (x < max_width)
 		{
-			ft_putnbr(mat[y][x], 1);
+			ft_putnbr_fd(mat[y][x], 1);
 			x++;
 			if (x < max_width)
-				write(1, 32, 1);
+				write(1, " ", 1);
 		}
 		write(1, "\n", 1);
 		y++;

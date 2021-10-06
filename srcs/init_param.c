@@ -1,13 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_param.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: codeur <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/05 11:21:58 by codeur            #+#    #+#             */
+/*   Updated: 2021/10/05 12:38:34 by abrun            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	init_param(t_param *param, char *file)
 {
-	int		ret;
-
-	ret = init_map(&param->map, file);
-	if (ret < 1)
-		return (ret);
+	if (init_map(&param->map, file) < 1)
+		return (0);
 	init_param_len_and_coef(param);
+	param->z_max = 0;
+	param->z_min = 0;
+	param->map.mati = ft_char_to_int_mat(param->map.data,
+			param->map.max_width, param);
+	if (!param->map.mati)
+	{
+		free_matc(param->map.data);
+		return (0);
+	}
+	param->mat_pos = get_mat_pos(param->map);
+	if (!param->mat_pos)
+	{
+		free_matc(param->map.data);
+		return (0);
+	}
 	return (1);
 }
 
@@ -24,25 +48,25 @@ int	init_map(t_map *map, char *file)
 	char		*line;
 	int			fd;
 	int			ret;
-	int			count;
 
-	count = 0;
 	fd = open(file, O_RDONLY);
 	if (!fd)
-		return (-1);
+		return (0);
 	ret = get_next_line(fd, &line);
 	if (ret < 1 || !get_map_ready(map))
-		return (-1);
+		ret = -1;
 	while (ret > 0)
 	{
 		map->data = ft_add_line_fdf(map->data, line);
 		if (!map->data)
-			return (-1);
+			break ;
+		increase_params(map, line);
 		free(line);
 		ret = get_next_line(fd, &line);
-		increase_params(&count, map);
 	}
 	free(line);
 	close(fd);
+	if (!map->data)
+		return (0);
 	return (1);
 }

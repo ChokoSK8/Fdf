@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
+/*   Updated: 2021/10/05 12:28:12 by codeur           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 
 # define FDF_H
@@ -10,6 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 # include "../Minilibx-linux/mlx.h"
 # include "../Libft/libft.h"
 # include "../Gnl/get_next_line.h"
@@ -142,6 +155,8 @@ typedef struct s_param
 	t_img		img;
 	t_map		map;
 	t_ptdbl		**mat_pos;
+	int			z_max;
+	int			z_min;
 }				t_param;
 
 int		ft_close_window(int key, t_param *param);
@@ -152,7 +167,7 @@ int		init_map(t_map *map, char *file);
 
 int		get_map_ready(t_map *map);
 
-void	increase_params(int *count, t_map *map);
+void	increase_params(t_map *map, char *line);
 
 int		init_param(t_param *param, char *file);
 
@@ -196,11 +211,15 @@ t_ptdbl	**get_mat_pos(t_map map);
 
 void	print_mat_pos(t_ptdbl **mat);
 
-int		**ft_char_to_int_mat(char **matc, int max_width);
+int		**ft_char_to_int_mat(char **matc, int max_width, t_param *param);
 
-int		*fill_one_lign(char **matc, t_point pt, int max_width);
+int		*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param);
 
 int		assign_one_digit(char **matc, t_point pt);
+
+size_t	get_digit_len(char *str, int count);
+
+char	*get_digit_from_str(char *str, int count);
 
 void	free_matc(char **matc);
 
@@ -273,4 +292,6 @@ void	organize_in_order_tab(int **tab, int tab_len);
 void	swap_in_tab(int *a, int *b);
 
 void	init_param_btw(t_pperp *param);
+
+int		check_digit_int(char *digit);
 #endif
