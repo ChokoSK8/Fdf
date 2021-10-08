@@ -1,0 +1,48 @@
+char_to_int_utils.c:	if (param->z_max < n)
+char_to_int_utils.c:		param->z_max = n;
+char_to_int_utils.c:	if (param->z_min > n)
+char_to_int_utils.c:		param->z_min = n;
+close_window.c:		mlx_destroy_window(param->mlx, param->win);
+close_window.c:		mlx_destroy_display(param->mlx);
+close_window.c:		free(param->mlx);
+free_param.c:	free_matc(param->map.data);
+free_param.c:	mlx_destroy_image(param->mlx, param->img.image);
+free_param.c:	free_mati(param->map.mati);
+free_param.c:	free_mat_pos(param->mat_pos);
+get_pt_perp.c:	param->btw_1 = 0;
+get_pt_perp.c:	param->btw_2 = 0;
+get_pt_perp.c:	param->btw_3 = 0;
+get_pt_perp.c:	if (is_pt_between_x(param->l_1.x_1, param->pt_1.x, param->l_1.x_2))
+get_pt_perp.c:		param->btw_1 = 1;
+get_pt_perp.c:	if (is_pt_between_x(param->l_2.x_1, param->pt_2.x, param->l_2.x_2))
+get_pt_perp.c:		param->btw_2 = 1;
+get_pt_perp.c:	if (is_pt_between_x(param->l_3.x_1, param->pt_3.x, param->l_3.x_2))
+get_pt_perp.c:		param->btw_3 = 1;
+get_pt_perp.c:	param->l_1.a = 0;
+get_pt_perp.c:	param->l_1.b = 0;
+get_pt_perp.c:	param->l_2.a = 0;
+get_pt_perp.c:	param->l_2.b = 0;
+get_pt_perp.c:	param->l_3.a = 0;
+get_pt_perp.c:	param->l_3.b = 0;
+get_pt_perp.c:	param->l_4.a = 0;
+get_pt_perp.c:	param->l_4.b = 0;
+get_pt_perp_utils.c:	if (param->l_1.a == 0 && param->l_1.b == 0)
+get_pt_perp_utils.c:		param->l_1 = param->l_4;
+get_pt_perp_utils.c:	if (param->l_2.a == 0 && param->l_2.b == 0)
+get_pt_perp_utils.c:		param->l_2 = param->l_4;
+get_pt_perp_utils.c:	if (param->l_3.a == 0 && param->l_3.b == 0)
+get_pt_perp_utils.c:		param->l_3 = param->l_4;
+init_param.c:	if (init_map(&param->map, file) < 1)
+init_param.c:	param->z_max = 0;
+init_param.c:	param->z_min = 0;
+init_param.c:	param->map.mati = ft_char_to_int_mat(param->map.data,
+init_param.c:			param->map.max_width, param);
+init_param.c:	if (!param->map.mati)
+init_param.c:		free_matc(param->map.data);
+init_param.c:	param->mat_pos = get_mat_pos(param->map);
+init_param.c:	if (!param->mat_pos)
+init_param.c:		free_matc(param->map.data);
+init_param.c:	param->img.coef_x = 600 / param->map.max_width;
+init_param.c:	param->width = param->img.coef_x * (param->map.max_width) * 2;
+init_param.c:	param->img.coef_y = 400 / param->map.height;
+init_param.c:	param->height = param->img.coef_y * (param->map.height) * 2;

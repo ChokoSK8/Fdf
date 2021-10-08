@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:05:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 12:05:46 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 10:47:53 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_pts_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
-	if ((int)pt_a.x == (int)pt_b.x && (int)pt_a.y == (int)pt_b.y)
+	if (ft_abs(pt_a.x, pt_b.x) < 0.001 && ft_abs(pt_a.y, pt_b.y) < 0.001)
 		return (1);
 	return (0);
 }

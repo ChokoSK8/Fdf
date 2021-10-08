@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_window.c                                     :+:      :+:    :+:   */
+/*   tools_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 12:05:25 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 10:49:57 by abrun            ###   ########.fr       */
+/*   Created: 2021/10/08 10:47:16 by abrun             #+#    #+#             */
+/*   Updated: 2021/10/08 10:47:40 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_close_window(int key, t_param *param)
+double	ft_abs(double a, double b)
 {
-	if (key == 65307)
-	{
-		free_param(param);
-		mlx_destroy_window(param->mlx, param->win);
-		mlx_destroy_display(param->mlx);
-		free(param->mlx);
-		exit(0);
-	}
-	return (1);
+	double	abs;
+
+	abs = a - b;
+	if (abs > 0)
+		return (abs);
+	return (-abs);
 }

@@ -6,7 +6,7 @@
 /*   By: codeur <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:21:58 by codeur            #+#    #+#             */
-/*   Updated: 2021/10/05 12:38:34 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 12:18:23 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	init_param(t_param *param, char *file)
 		free_matc(param->map.data);
 		return (0);
 	}
+	param->z = assign_param_z(*param, param->map);
+	printf("param->z : %f\n", param->z);
 	param->mat_pos = get_mat_pos(param->map);
 	if (!param->mat_pos)
 	{

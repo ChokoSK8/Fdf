@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:28 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 11:24:22 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 12:09:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ int	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
 		return (0);
 	while (matc[pt.y][pt.x])
 	{
-		while (matc[pt.y][pt.x] && !(ft_is_sign_digit(matc[pt.y][pt.x],
-						matc[pt.y][pt.x + 1])))
-			pt.x++;
+		pt.x = get_next_pt_x(matc, pt, 1);
 		if (matc[pt.y][pt.x])
 		{
 			tabi[count] = assign_one_digit(matc, pt);
@@ -58,14 +56,9 @@ int	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
 				free(tabi);
 				return (0);
 			}
+			assign_param_z_limits(param, tabi[count - 1]);
 		}
-		if (matc[pt.y][pt.x] && param->z_max < tabi[count - 1])
-			param->z_max = tabi[count - 1];
-		if (matc[pt.y][pt.x] && param->z_min > tabi[count - 1])
-			param->z_min = tabi[count - 1];
-		while (matc[pt.y][pt.x] && ft_is_sign_digit(matc[pt.y][pt.x],
-					matc[pt.y][pt.x + 1]))
-			pt.x++;
+		pt.x = get_next_pt_x(matc, pt, 2);
 	}
 	while (count < max_width)
 		tabi[count++] = 0;

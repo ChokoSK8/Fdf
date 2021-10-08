@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 12:28:12 by codeur           ###   ########.fr       */
+/*   Updated: 2021/10/08 12:09:29 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_param
 	t_ptdbl		**mat_pos;
 	int			z_max;
 	int			z_min;
+	double		z;
 }				t_param;
 
 int		ft_close_window(int key, t_param *param);
@@ -294,4 +295,14 @@ void	swap_in_tab(int *a, int *b);
 void	init_param_btw(t_pperp *param);
 
 int		check_digit_int(char *digit);
+
+double	ft_abs(double a, double b);
+
+void	assign_param_z_limits(t_param *param, int n);
+
+int		get_next_pt_x(char **matc, t_point pt, int config);
+
+char	**assign_the_line_and_z(char **matc, char *line, int count);
+
+double	assign_param_z(t_param param, t_map map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:04:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 12:04:56 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 12:18:45 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	display_squares(t_img *img, t_ptdbl **mat_pos)
 		pt.x = 0;
 		while (mat_pos[pt.y][pt.x].x != -1)
 		{
+			printf("pt : (%d, %d)\n", pt.x, pt.y);
 			print_diamonds(img, mat_pos, pt, disp);
 			pt.x++;
 		}
@@ -61,7 +62,8 @@ void	print_diamonds(t_img *img, t_ptdbl **mat_pos,
 		if (!is_apex_equal(apex))
 		{
 			lines = get_eq_lines(apex);
-			erase_inside(apex, lines, img);
+//			if (pt.x == 1 && pt.y == 1)
+				erase_inside(apex, lines, img);
 			display_line(apex.a, apex.b, img->size_line, img);
 			display_line(apex.b, apex.d, img->size_line, img);
 			display_line(apex.a, apex.c, img->size_line, img);
@@ -87,6 +89,7 @@ void	put_pixels(t_img *img, t_ptdbl pt)
 	int	pos;
 
 	pos = ((int)pt.x * 4 + img->size_line * (int)pt.y);
+//	printf("pos : %d\n", pos);
 	img->data[pos] = 0;
 	img->data[pos + 1] = 0;
 	img->data[pos + 2] = 0;
