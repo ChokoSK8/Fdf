@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:26:17 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 11:27:40 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 15:17:25 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_param(t_param *param)
 {
 	free_matc(param->map.data);
 	mlx_destroy_image(param->mlx, param->img.image);
-	free_mati(param->map.mati);
+	free_matldb(param->map.mati);
 	free_mat_pos(param->mat_pos);
 }
 
@@ -31,6 +31,19 @@ void	free_mati(int **mati)
 		n++;
 	}
 	free(mati);
+}
+
+void	free_matldb(long double **matl)
+{
+	int		n;
+
+	n = 0;
+	while (matl[n])
+	{
+		free(matl[n]);
+		n++;
+	}
+	free(matl);
 }
 
 void	free_mat_pos(t_ptdbl **mat_pos)

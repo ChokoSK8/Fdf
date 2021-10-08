@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:05:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 10:47:53 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 16:47:45 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_pts_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
-	if (ft_abs(pt_a.x, pt_b.x) < 0.001 && ft_abs(pt_a.y, pt_b.y) < 0.001)
+	if (ft_abs(pt_a.x - pt_b.x) < 0.001 && ft_abs(pt_a.y - pt_b.y) < 0.001)
 		return (1);
 	return (0);
 }
@@ -34,11 +34,11 @@ t_lines	get_eq_lines(t_apex apex)
 	return (lines);
 }
 
-int	is_pt_between_x(double x_a, double x_b, double x_c)
+int	is_pt_between_x(long double x_a, long double x_b, long double x_c)
 {
-	double		dist_ab;
-	double		dist_bc;
-	double		dist_ac;
+	long double		dist_ab;
+	long double		dist_bc;
+	long double		dist_ac;
 
 	dist_ab = x_b - x_a;
 	dist_bc = x_c - x_b;
@@ -55,7 +55,7 @@ int	is_line_equal_to_eraser(t_line line, t_line eraser)
 	return (0);
 }
 
-int	is_ptdouble_equal(t_ptdbl pt_a, t_ptdbl pt_b)
+int	is_ptlong_double_equal(t_ptdbl pt_a, t_ptdbl pt_b)
 {
 	if (pt_a.x == pt_b.x && pt_a.y == pt_b.y)
 		return (1);

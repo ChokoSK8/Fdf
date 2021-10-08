@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_3.c                                          :+:      :+:    :+:   */
+/*   tmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 10:47:16 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 16:47:16 by abrun            ###   ########.fr       */
+/*   Created: 2021/10/08 16:06:29 by abrun             #+#    #+#             */
+/*   Updated: 2021/10/08 16:20:13 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-long double	ft_abs(long double a)
+void	ft_print_matl(long double **mat, int max_width)
 {
-	long double	abs;
+	int	x;
+	int	y;
 
-	abs = a;
-	if (abs > 0)
-		return (abs);
-	return (-abs);
+	y = 0;
+	while (mat[y])
+	{
+		x = 0;
+		while (x < max_width)
+		{
+			printf("mat[%d][%d] : %Lf\n", y, x, mat[y][x]);
+			x++;
+		}
+		write(1, "\n", 1);
+		y++;
+	}
 }

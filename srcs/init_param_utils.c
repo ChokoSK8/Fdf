@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:53:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 14:25:05 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 17:33:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,14 @@ void	increase_params(t_map *map, char *line)
 	map->height++;
 }
 
-double	assign_param_z(t_param param, t_map map)
+long double	assign_param_z(t_param param)
 {
-	t_point	pt;
-	double	z;
+	long double	z;
+	long double	max;
 
-	pt.x = map.max_width;
-	pt.y = map.height;
-	z = 1;
-	while (z > 0.000001 && (pt.x - z * param.z_min > param.width - 100
-			|| pt.y - z * param.z_min > param.height - 100
-			|| z * param.z_max > 100))
-	{
-		printf("z : %f\n", z);
-		if (z > 0.01)
-			z -= 0.01;
-		else if (z > 0.0001)
-			z -= 0.0001;
-		else if (z > 0.000001)
-			z -= 0.0000001;
-	}
+	max = ft_abs(param.z_max);
+	if (max < ft_abs(param.z_min))
+		max = ft_abs(param.z_min);
+	z = 0.5 / max;
 	return (z);
 }

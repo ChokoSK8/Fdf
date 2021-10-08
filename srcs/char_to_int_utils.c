@@ -6,13 +6,13 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:52:19 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 12:09:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 17:31:25 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	assign_param_z_limits(t_param *param, int n)
+void	assign_param_z_limits(t_param *param, long double n)
 {
 	if (param->z_max < n)
 		param->z_max = n;
@@ -35,4 +35,28 @@ int	get_next_pt_x(char **matc, t_point pt, int config)
 			pt.x++;
 	}
 	return (pt.x);
+}
+
+long double	**div_matl(long double **matl, t_param *param, int len)
+{
+	long double	div;
+	t_point		pt;
+
+	div = 2;
+	while (param->z_min/div < -30 || param->z_max/div > 30)
+		div += 2;
+	pt.y = 0;
+	param->z_min /= div;
+	param->z_max /= div;
+	while (matl[pt.y])
+	{
+		pt.x = 0;
+		while (pt.x < len)
+		{
+			matl[pt.y][pt.x] /= div;
+			pt.x++;
+		}
+		pt.y++;
+	}
+	return (matl);
 }

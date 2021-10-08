@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:42 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 14:13:40 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 17:50:06 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 		return (0);
 	param.mlx = mlx_init();
 	param.img.image = mlx_new_image(param.mlx, param.width, param.height);
-	printf("param.len : (%zu, %zu)\n", param.width, param.height);
 	param.img.data = mlx_get_data_addr(param.img.image,
 			&param.img.bpp, &param.img.size_line, &param.img.endian);
 	param.win = mlx_new_window(param.mlx, param.width, param.height, "Fdf");

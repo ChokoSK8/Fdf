@@ -35,7 +35,7 @@ void	display_line(t_ptdbl apex_a, t_ptdbl apex_b,
 {
 	t_vect		vect;
 	t_ptdbl		count;
-	double		dist;
+	long double		dist;
 	int			pos;
 
 	dist = get_dist_btw_2_pts(apex_a, apex_b);

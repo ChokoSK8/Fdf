@@ -21,31 +21,31 @@ t_vect	get_vect_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b)
 	return (vect);
 }
 
-double	convert(double degre)
+long double	convert(long double degre)
 {
-	double	rad;
+	long double	rad;
 
 	rad = degre / 57.2958;
 	return (rad);
 }
 
-double	convert_inv(double rad)
+long double	convert_inv(long double rad)
 {
-	double	degre;
+	long double	degre;
 
 	degre = 57.2958 * rad;
 	return (degre);
 }
 
-double	get_dist_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b)
+long double	get_dist_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b)
 {
-	double	dist;
+	long double	dist;
 
 	dist = sqrt(pow(pt_a.x - pt_b.x, 2) + pow(pt_a.y - pt_b.y, 2));
 	return (dist);
 }
 
-t_ptdbl	apply_vect(t_ptdbl pt, t_vect vect, double len)
+t_ptdbl	apply_vect(t_ptdbl pt, t_vect vect, long double len)
 {
 	pt.x += (len * vect.x);
 	pt.y += (len * vect.y);

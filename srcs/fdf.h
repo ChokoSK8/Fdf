@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 14:15:41 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 18:11:16 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <limits.h>
+# include <float.h>
 # include "../Minilibx-linux/mlx.h"
 # include "../Libft/libft.h"
 # include "../Gnl/get_next_line.h"
@@ -35,20 +36,20 @@ typedef struct s_point
 
 typedef struct s_dists
 {
-	double	h;
-	double	v;
+	long double	h;
+	long double	v;
 }				t_dists;
 
-typedef struct s_ptdouble
+typedef struct s_ptlong_double
 {
-	double		x;
-	double		y;
+	long double		x;
+	long double		y;
 }				t_ptdbl;
 
 typedef struct s_vect
 {
-	double		x;
-	double		y;
+	long double		x;
+	long double		y;
 }				t_vect;
 
 typedef struct s_vects
@@ -59,8 +60,8 @@ typedef struct s_vects
 
 typedef struct s_line
 {
-	double	a;
-	double	b;
+	long double	a;
+	long double	b;
 }				t_line;
 
 typedef struct s_eraser
@@ -72,16 +73,16 @@ typedef struct s_eraser
 
 typedef struct s_line_perp
 {
-	double		a;
-	double		b;
-	double		x_1;
-	double		x_2;
+	long double		a;
+	long double		b;
+	long double		x_1;
+	long double		x_2;
 }				t_lperp;
 
 typedef struct s_ptperp
 {
-	double	x;
-	double	y;
+	long double	x;
+	long double	y;
 	int	btw;
 }				t_ptperp;
 
@@ -97,9 +98,9 @@ typedef struct s_param_perp
 	int		btw_1;
 	int		btw_2;
 	int		btw_3;
-	double		dist_1;
-	double		dist_2;
-	double		dist_3;
+	long double		dist_1;
+	long double		dist_2;
+	long double		dist_3;
 }				t_pperp;
 
 typedef struct s_lines
@@ -115,7 +116,7 @@ typedef struct s_display
 	t_point		origin;
 	t_vect		vect_x;
 	t_vect		vect_y;
-	double		angle;
+	long double		angle;
 	int		alt;
 }				t_disp;
 
@@ -130,7 +131,7 @@ typedef struct s_apex
 typedef struct s_map
 {
 	char		**data;
-	int			**mati;
+	long double	**mati;
 	size_t		max_width;
 	size_t		height;
 }				t_map;
@@ -142,8 +143,8 @@ typedef struct s_img
 	int		endian;
 	char	*data;
 	void	*image;
-	double	coef_x;
-	double	coef_y;
+	long double	coef_x;
+	long double	coef_y;
 }				t_img;
 
 typedef struct s_param
@@ -155,9 +156,10 @@ typedef struct s_param
 	t_img		img;
 	t_map		map;
 	t_ptdbl		**mat_pos;
-	int			z_max;
-	int			z_min;
-	double		z;
+	long double		z_max;
+	long double		z_min;
+	long double	z;
+	long double	div;
 }				t_param;
 
 int		ft_close_window(int key, t_param *param);
@@ -189,11 +191,11 @@ t_apex	get_apex_of_diamonds(t_apex apex, t_disp disp);
 
 t_vect	get_vect_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b);
 
-double	get_dist_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b);
+long double	get_dist_btw_2_pts(t_ptdbl pt_a, t_ptdbl pt_b);
 
-t_ptdbl	apply_vect(t_ptdbl pt, t_vect vect, double len);
+t_ptdbl	apply_vect(t_ptdbl pt, t_vect vect, long double len);
 
-double	get_coefxy(int coef_x, int coef_y);
+long double	get_coefxy(int coef_x, int coef_y);
 
 void	print_apex(t_apex apex);
 
@@ -201,22 +203,22 @@ t_ptdbl	get_apex(t_disp disp, t_ptdbl pt);
 
 t_disp	init_disp(t_img img);
 
-double	convert(double degre);
+long double	convert(long double degre);
 
-double	convert_inv(double rad);
+long double	convert_inv(long double rad);
 
 void	display_line(t_ptdbl apex_a, t_ptdbl apex_b,
 			int size_line, t_img *img);
 
-t_ptdbl	**get_mat_pos(t_map map, double z);
+t_ptdbl	**get_mat_pos(t_map map, long double z);
 
 void	print_mat_pos(t_ptdbl **mat);
 
-int		**ft_char_to_int_mat(char **matc, int max_width, t_param *param);
+long double		**ft_char_to_long_mat(char **matc, int max_width, t_param *param);
 
-int		*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param);
+long double		*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param);
 
-int		assign_one_digit(char **matc, t_point pt);
+long double		assign_one_digit(char **matc, t_point pt);
 
 size_t	get_digit_len(char *str, int count);
 
@@ -244,7 +246,7 @@ t_lines	get_eq_lines(t_apex apex);
 
 t_erase	get_erases(t_lines lines, t_apex apex);
 
-double	get_angle_from_pts(t_ptdbl pt_a, t_ptdbl pt_b, t_ptdbl pt_c);
+long double	get_angle_from_pts(t_ptdbl pt_a, t_ptdbl pt_b, t_ptdbl pt_c);
 
 t_erase	init_erase(t_ptdbl pt_a, t_ptdbl pt_b, t_line line);
 
@@ -278,11 +280,11 @@ t_lperp	assign_line_perp(t_line line, t_ptdbl pt_a, t_ptdbl pt_b);
 
 int		is_line_equal_to_eraser(t_line line, t_line eraser);
 
-int		is_pt_between_x(double x_a, double x_b, double x_c);
+int		is_pt_between_x(long double x_a, long double x_b, long double x_c);
 
 int		is_apex_equal(t_apex apex);
 
-int		is_ptdouble_equal(t_ptdbl pt_a, t_ptdbl pt_b);
+int		is_ptlong_double_equal(t_ptdbl pt_a, t_ptdbl pt_b);
 
 int		*add_n_in_tab(int *tab, int n, int tab_len);
 
@@ -294,15 +296,23 @@ void	swap_in_tab(int *a, int *b);
 
 void	init_param_btw(t_pperp *param);
 
-int		check_digit_int(char *digit);
+int		check_digit_lint(char *digit);
 
-double	ft_abs(double a, double b);
+long double	ft_abs(long double a);
 
-void	assign_param_z_limits(t_param *param, int n);
+void	assign_param_z_limits(t_param *param, long double n);
 
 int		get_next_pt_x(char **matc, t_point pt, int config);
 
 char	**assign_the_line_and_z(char **matc, char *line, int count);
 
-double	assign_param_z(t_param param, t_map map);
+long double	assign_param_z(t_param param);
+
+void	free_matldb(long double **matl);
+
+long double	**div_matl(long double **matl, t_param *param, int len);
+
+int		check_map_content(char **matc);
+
+void		ft_print_matl(long double **m, int len);
 #endif

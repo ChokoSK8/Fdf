@@ -6,43 +6,43 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:28 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 12:09:41 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 18:15:49 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	**ft_char_to_int_mat(char **matc, int max_width, t_param *param)
+long double	**ft_char_to_long_mat(char **matc, int max_width, t_param *param)
 {
-	int		**mati;
-	t_point	pt;
+	long double	**matl;
+	t_point		pt;
 
-	mati = malloc(sizeof(int *) * (ft_matlen(matc) + 1));
-	if (!mati)
+	matl = malloc(sizeof(long double *) * (ft_matlen(matc) + 1));
+	if (!matl)
 		return (0);
 	pt.y = 0;
 	while (matc[pt.y])
 	{
 		pt.x = 0;
-		mati[pt.y] = fill_one_lign(matc, pt, max_width, param);
-		if (!mati[pt.y])
+		matl[pt.y] = fill_one_lign(matc, pt, max_width, param);
+		if (!matl[pt.y])
 		{
-			free_mati(mati);
+			free_matldb(matl);
 			return (0);
 		}
 		pt.y++;
 	}
-	mati[pt.y] = 0;
-	return (mati);
+	matl[pt.y] = 0;
+	return (matl);
 }
 
-int	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
+long double	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
 {
-	int		count;
-	int		*tabi;
+	int			count;
+	long double	*tabi;
 
 	count = 0;
-	tabi = malloc(sizeof(int) * (max_width + 1));
+	tabi = malloc(sizeof(long double) * (max_width + 1));
 	if (!tabi)
 		return (0);
 	while (matc[pt.y][pt.x])
@@ -51,7 +51,7 @@ int	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
 		if (matc[pt.y][pt.x])
 		{
 			tabi[count] = assign_one_digit(matc, pt);
-			if (tabi[count++] == INT_MIN)
+			if (tabi[count++] == LONG_MAX)
 			{
 				free(tabi);
 				return (0);
@@ -65,18 +65,19 @@ int	*fill_one_lign(char **matc, t_point pt, int max_width, t_param *param)
 	return (tabi);
 }
 
-int	assign_one_digit(char **matc, t_point pt)
+long double	assign_one_digit(char **matc, t_point pt)
 {
-	char	*digit;
-	int		num;
+	char		*digit;
+	long double	num;
 
 	digit = get_digit_from_str(matc[pt.y], pt.x);
 	if (!digit)
 	{
 		free(digit);
-		return (INT_MIN);
+		return (LONG_MAX);
 	}
-	num = ft_atoi(digit);
+	num = ft_atoi_ldb(digit);
+	printf("num : %Lf\ndigit : %s\n", num, digit);
 	free(digit);
 	return (num);
 }
@@ -95,7 +96,7 @@ char	*get_digit_from_str(char *str, int count)
 	while (str[count] && ft_is_sign_digit(str[count], str[count + 1]))
 		digit[c++] = str[count++];
 	digit[c] = 0;
-	if (!check_digit_int(digit))
+	if (!check_digit_lint(digit))
 		return (0);
 	return (digit);
 }

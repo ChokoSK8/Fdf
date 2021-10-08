@@ -6,7 +6,7 @@
 /*   By: codeur <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:21:58 by codeur            #+#    #+#             */
-/*   Updated: 2021/10/08 14:14:54 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 18:18:00 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@ int	init_param(t_param *param, char *file)
 	if (init_map(&param->map, file) < 1)
 		return (0);
 	init_param_len_and_coef(param);
+	printf("width : %zu\n", param->width);
+	printf("heigh : %zu\n", param->height);
 	param->z_max = 0;
 	param->z_min = 0;
-	param->map.mati = ft_char_to_int_mat(param->map.data,
+	param->map.mati = ft_char_to_long_mat(param->map.data,
 			param->map.max_width, param);
+	param->map.mati = div_matl(param->map.mati, param, param->map.max_width);
+	ft_print_matl(param->map.mati, param->map.max_width);
+	return (0);
 	if (!param->map.mati)
 	{
 		free_matc(param->map.data);
 		return (0);
 	}
-	param->z = assign_param_z(*param, param->map);
-	printf("param->z : %f\n", param->z);
+	param->z = assign_param_z(*param);
+	printf("param->z : %Lf\n", param->z);
 	param->mat_pos = get_mat_pos(param->map, param->z);
 	if (!param->mat_pos)
 	{
@@ -39,9 +44,11 @@ int	init_param(t_param *param, char *file)
 
 void	init_param_len_and_coef(t_param *param)
 {
-	param->img.coef_x = 600 / param->map.max_width;
+	param->img.coef_x = 600 / (long double)param->map.max_width;
+	printf("1 : %Lf\n", param->img.coef_x);
+	printf("2 : %zu\n", param->map.max_width);
 	param->width = param->img.coef_x * (param->map.max_width) * 2;
-	param->img.coef_y = 400 / param->map.height;
+	param->img.coef_y = 400 / (long double)param->map.height;
 	param->height = param->img.coef_y * (param->map.height) * 2;
 }
 
@@ -68,7 +75,7 @@ int	init_map(t_map *map, char *file)
 	}
 	free(line);
 	close(fd);
-	if (!map->data)
+	if (!map->data || !check_map_content(map->data))
 		return (0);
 	return (1);
 }
