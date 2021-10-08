@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:53:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 12:19:35 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 14:25:05 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ double	assign_param_z(t_param param, t_map map)
 	pt.x = map.max_width;
 	pt.y = map.height;
 	z = 1;
-	while (z > 0.0000001 && pt.x - z * param.z_min > param.width - 50
-			&& pt.y - z * param.z_min > param.height - 50
-			&& z * param.z_max > 50)
+	while (z > 0.000001 && (pt.x - z * param.z_min > param.width - 100
+			|| pt.y - z * param.z_min > param.height - 100
+			|| z * param.z_max > 100))
 	{
+		printf("z : %f\n", z);
 		if (z > 0.01)
 			z -= 0.01;
 		else if (z > 0.0001)

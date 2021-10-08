@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:04:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 12:18:45 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 14:18:53 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	print_diamonds(t_img *img, t_ptdbl **mat_pos,
 		if (!is_apex_equal(apex))
 		{
 			lines = get_eq_lines(apex);
-//			if (pt.x == 1 && pt.y == 1)
+			if (pt.x == 1 && pt.y == 1)
 				erase_inside(apex, lines, img);
 			display_line(apex.a, apex.b, img->size_line, img);
 			display_line(apex.b, apex.d, img->size_line, img);

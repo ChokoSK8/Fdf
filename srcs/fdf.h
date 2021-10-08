@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 12:09:29 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/08 14:15:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ double	convert_inv(double rad);
 void	display_line(t_ptdbl apex_a, t_ptdbl apex_b,
 			int size_line, t_img *img);
 
-t_ptdbl	**get_mat_pos(t_map map);
+t_ptdbl	**get_mat_pos(t_map map, double z);
 
 void	print_mat_pos(t_ptdbl **mat);
 
