@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:53:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 17:33:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/14 14:19:59 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ long double	assign_param_z(t_param param)
 	max = ft_abs(param.z_max);
 	if (max < ft_abs(param.z_min))
 		max = ft_abs(param.z_min);
-	z = 0.5 / max;
+	if (!max)
+		return (0);
+	z = 2.333235 / max;
 	return (z);
 }

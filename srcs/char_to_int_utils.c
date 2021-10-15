@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:52:19 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 17:31:25 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/14 14:06:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ long double	**div_matl(long double **matl, t_param *param, int len)
 	long double	div;
 	t_point		pt;
 
-	div = 2;
+	div = 1;
 	while (param->z_min/div < -30 || param->z_max/div > 30)
-		div += 2;
+		div += 0.1;
 	pt.y = 0;
 	param->z_min /= div;
 	param->z_max /= div;

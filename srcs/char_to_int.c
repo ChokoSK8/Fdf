@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:28 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 18:15:49 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/14 10:17:30 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ long double	assign_one_digit(char **matc, t_point pt)
 		return (LONG_MAX);
 	}
 	num = ft_atoi_ldb(digit);
-	printf("num : %Lf\ndigit : %s\n", num, digit);
+//	printf("num : %Lf\ndigit : %s\n", num, digit);
 	free(digit);
 	return (num);
 }

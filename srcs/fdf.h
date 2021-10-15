@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 18:11:16 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/15 05:21:11 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ typedef struct s_param
 {
 	void		*mlx;
 	void		*win;
-	size_t		width;
-	size_t		height;
+	int			width;
+	int			height;
 	t_img		img;
 	t_map		map;
 	t_ptdbl		**mat_pos;
@@ -176,7 +176,7 @@ int		init_param(t_param *param, char *file);
 
 void	init_param_len_and_coef(t_param *param);
 
-void	display_squares(t_img *img, t_ptdbl **mat_pos);
+void	display_squares(t_img *img, t_ptdbl **mat_pos, t_param param);
 
 void	print_cases(t_img *img, t_point pt, int size_line);
 
@@ -201,7 +201,7 @@ void	print_apex(t_apex apex);
 
 t_ptdbl	get_apex(t_disp disp, t_ptdbl pt);
 
-t_disp	init_disp(t_img img);
+t_disp	init_disp(t_img img, t_param param);
 
 long double	convert(long double degre);
 

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:24:25 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 17:27:36 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/14 12:09:44 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_ptdbl	**get_mat_pos(t_map map, long double z)
 			mat[pt.y][pt.x].x = pt.x - z * (map.mati[pt.y][pt.x]);
 			mat[pt.y][pt.x].y = pt.y - z * (map.mati[pt.y][pt.x]);
 		}
-		printf("pt : (%d, %d)\n", pt.x, pt.y);
+	//	printf("pt : (%d, %d)\n", pt.x, pt.y);
 		mat[pt.y][pt.x].x = -1;
 	}
 	mat[pt.y] = 0;

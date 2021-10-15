@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:42 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 17:50:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/15 05:21:26 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
+	param.mlx = mlx_init();
 	if (!init_param(&param, av[1]))
 		return (0);
-	param.mlx = mlx_init();
 	param.img.image = mlx_new_image(param.mlx, param.width, param.height);
 	param.img.data = mlx_get_data_addr(param.img.image,
 			&param.img.bpp, &param.img.size_line, &param.img.endian);
 	param.win = mlx_new_window(param.mlx, param.width, param.height, "Fdf");
-	display_squares(&param.img, param.mat_pos);
+	display_squares(&param.img, param.mat_pos, param);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
 	mlx_hook(param.win, 2, 1L << 0, ft_close_window, &param);
 	mlx_loop(param.mlx);
