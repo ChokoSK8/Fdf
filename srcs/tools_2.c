@@ -34,11 +34,11 @@ t_lines	get_eq_lines(t_apex apex)
 	return (lines);
 }
 
-int	is_pt_between_x(long double x_a, long double x_b, long double x_c)
+int	is_pt_between_x(double x_a, double x_b, double x_c)
 {
-	long double		dist_ab;
-	long double		dist_bc;
-	long double		dist_ac;
+	double		dist_ab;
+	double		dist_bc;
+	double		dist_ac;
 
 	dist_ab = x_b - x_a;
 	dist_bc = x_c - x_b;

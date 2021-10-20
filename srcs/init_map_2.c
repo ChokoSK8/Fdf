@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   init_map_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 10:00:39 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 18:04:40 by abrun            ###   ########.fr       */
+/*   Created: 2021/10/20 18:41:52 by abrun             #+#    #+#             */
+/*   Updated: 2021/10/20 18:43:57 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	check_digit_lint(char *digit)
-{
-	size_t		digit_len;
-
-	digit_len = ft_strlen(digit);
-	if (digit_len < 19)
-		return (1);
-	if (digit_len >= 21)
-		return (0);
-	if (digit_len == 20 && *digit != '-')
-		return (0);
-	if (digit_len == 20 && ft_strncmp(digit, "-9223372036854775808", 20) > 0)
-		return (0);
-	if (digit_len == 19 && ft_strncmp(digit, "9223372036854775807", 19) > 0)
-		return (0);
-	return (1);
-}
-
 int	check_map_content(char **matc)
 {
 	t_point	pt;
+	int		x_max;
 
+	x_max = 0;
 	pt.y = 0;
 	while (matc[pt.y])
 	{
@@ -46,7 +30,23 @@ int	check_map_content(char **matc)
 			else
 				return (0);
 		}
+		if (x_max < pt.x)
+			x_max = pt.x;
 		pt.y++;
 	}
+	if (pt.y <= 1 || x_max <= 1)
+		return (0);
 	return (1);
+}
+
+char	**assign_the_line_and_z(char **new_mat, char *line, int count)
+{
+	new_mat[count] = ft_strdup(line);
+	if (!new_mat[count++])
+	{
+		free_matc(new_mat);
+		return (0);
+	}
+	new_mat[count] = 0;
+	return (new_mat);
 }

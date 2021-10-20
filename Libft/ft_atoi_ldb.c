@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 11:33:27 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 15:12:23 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 19:16:43 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long double	ft_atoi_ldb(const char *str)
 {
 	long double		res;
-	unsigned int		n_minus;
+	unsigned int	n_minus;
 
 	res = 0;
 	n_minus = 0;

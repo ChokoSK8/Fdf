@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:04:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/15 05:23:22 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 19:55:47 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	display_squares(t_img *img, t_ptdbl **mat_pos, t_param param)
 		pt.x = 0;
 		while (mat_pos[pt.y][pt.x].x != -1)
 		{
-		//	printf("pt : (%d, %d)\n", pt.x, pt.y);
+			printf("pt : (%d, %d)\n", pt.x, pt.y);
 			print_diamonds(img, mat_pos, pt, disp);
 			pt.x++;
 		}
@@ -35,14 +35,23 @@ void	display_squares(t_img *img, t_ptdbl **mat_pos, t_param param)
 t_disp	init_disp(t_img img, t_param param)
 {
 	t_disp		disp;
+	double		a_y;
+	double		d_y;
+	double		c_x;
+	double		b_x;
 
-	disp.origin.x = param.width / 2.5;
-	disp.origin.y = 50;
 	disp.angle = 45;
 	disp.vect_x.x = cos(convert(disp.angle)) * img.coef_x;
 	disp.vect_x.y = sin(convert(disp.angle)) * img.coef_x;
 	disp.vect_y.x = -sin(convert(disp.angle)) * img.coef_y;
 	disp.vect_y.y = cos(convert(disp.angle)) * img.coef_y;
+	a_y = (-3) * disp.vect_x.y + (-3) * disp.vect_y.y;
+	b_x = (param.map.max_width + 3) * disp.vect_x.x + (-3) * disp.vect_y.x;
+	c_x = (-3) * disp.vect_x.x + (param.map.height + 3) * disp.vect_y.x;
+	d_y = (param.map.max_width + 3) * disp.vect_x.y
+		+ (param.map.height + 3) * disp.vect_y.y;
+	disp.origin.x = (param.width - b_x - c_x) / 2;
+	disp.origin.y = (param.height - d_y - a_y) / 2;
 	return (disp);
 }
 
@@ -59,16 +68,12 @@ void	print_diamonds(t_img *img, t_ptdbl **mat_pos,
 		apex.c = mat_pos[pt.y + 1][pt.x];
 		apex.d = mat_pos[pt.y + 1][pt.x + 1];
 		apex = get_apex_of_diamonds(apex, disp);
-	//	if (apex.a.x < 0 || apex.a.x > 1000)
-//		if (!is_apex_equal(apex))
-//		{
-			lines = get_eq_lines(apex);
-			erase_inside(apex, lines, img);
-			display_line(apex.a, apex.b, img->size_line, img);
-			display_line(apex.b, apex.d, img->size_line, img);
-			display_line(apex.a, apex.c, img->size_line, img);
-			display_line(apex.c, apex.d, img->size_line, img);
-//		}
+		lines = get_eq_lines(apex);
+		erase_inside(apex, lines, img);
+		display_line(apex.a, apex.b, img);
+		display_line(apex.b, apex.d, img);
+		display_line(apex.a, apex.c, img);
+		display_line(apex.c, apex.d, img);
 	}
 }
 
@@ -80,13 +85,27 @@ int	is_apex_equal(t_apex apex)
 	return (0);
 }
 
-void	put_pixels(t_img *img, t_ptdbl pt)
+void	put_pixels(t_img *img, t_ptdbl pt, int config)
 {
 	int	pos;
 
 	pos = ((int)pt.x * 4 + img->size_line * (int)pt.y);
-//	printf("pos : %d\n", pos);
-	img->data[pos] = 0;
-	img->data[pos + 1] = 0;
-	img->data[pos + 2] = 0;
+	if (config == 0)
+	{
+		img->data[pos] = 0;
+		img->data[pos + 1] = 0;
+		img->data[pos + 2] = 0;
+	}
+	if (config == 1)
+	{
+		img->data[pos] = 100;
+		img->data[pos + 1] = 100;
+		img->data[pos + 2] = 50;
+	}
+	if (config == 2)
+	{
+		img->data[pos] = 50;
+		img->data[pos + 1] = 100;
+		img->data[pos + 2] = 100;
+	}
 }

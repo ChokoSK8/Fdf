@@ -7,7 +7,7 @@ ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
 ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
 ft_toupper.c ft_add_line.c ft_matlen.c ft_print_mat.c ft_is_sign_digit.c \
 ft_print_mati.c ft_digitlen_in_str.c ft_strcpy.c ft_print_tab.c \
-ft_atoi_ldb.c
+ft_atoi_ldb.c ft_strjoin_free.c
 
 BONUS	= ft_lstlast.c ft_lstnew.c ft_lstsize.c ft_lstadd_back.c \
 ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:05:56 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/05 12:05:58 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 19:58:21 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,31 @@ t_ptdbl	get_apex(t_disp disp, t_ptdbl pt)
 {
 	t_ptdbl	pt_a;
 
+	pt_a.up = pt.up;
 	pt_a.x = disp.origin.x + pt.x * disp.vect_x.x + pt.y * disp.vect_y.x;
 	pt_a.y = disp.origin.y + pt.x * disp.vect_x.y + pt.y * disp.vect_y.y;
 	return (pt_a);
 }
 
-void	display_line(t_ptdbl apex_a, t_ptdbl apex_b,
-		int size_line, t_img *img)
+void	display_line(t_ptdbl apex_a, t_ptdbl apex_b, t_img *img)
 {
 	t_vect		vect;
 	t_ptdbl		count;
-	long double		dist;
-	int			pos;
+	double		dist;
+	int			config;
 
+	config = 2;
+	if (apex_a.up && apex_b.up)
+		config = 1;
 	dist = get_dist_btw_2_pts(apex_a, apex_b);
 	count = apex_a;
 	vect = get_vect_btw_2_pts(apex_a, apex_b);
+	printf("config : %d\n", config);
+	printf("dist : %f\n", dist);
 	while (get_dist_btw_2_pts(count, apex_a) < dist)
 	{
-		pos = ((int)count.x * 4 + size_line * (int)count.y);
-		img->data[pos] = 100;
-		img->data[pos + 1] = 50;
-		img->data[pos + 2] = 90;
+		printf("hey\n");
+		put_pixels(img, count, config);
 		count = get_next_ptdbl(count, vect);
 	}
 }

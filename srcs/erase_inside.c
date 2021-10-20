@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:05:34 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 16:57:56 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 19:32:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,13 @@ void	erase_from_one_lign(t_erase eraser, t_lines lines,
 	{
 		count = tmp;
 		perp = get_pt_perp(lines, count, eraser.line, apex);
-	//	printf("perp : (%Lf, %Lf)\n", perp.x, perp.y);
 		vect.h = get_vect_btw_2_pts(count, perp);
 		dist.h = get_dist_btw_2_pts(count, perp);
-	//	printf("vect.h : (%Lf, %Lf)\n", vect.h.x, vect.h.y);
 		if (is_perp_ok(perp) && !is_pts_equal(count, perp))
 		{
 			while (get_dist_btw_2_pts(tmp, count) < dist.h)
 			{
-//				if (count.y < 0)
-//					printf("count : (%Lf, %Lf)\n", count.x, count.y);
-				put_pixels(img, count);
+				put_pixels(img, count, 0);
 				count = get_next_ptdbl(count, vect.h);
 			}
 		}

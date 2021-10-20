@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:42 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/15 05:21:26 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 17:59:56 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	main(int ac, char **av)
 		return (0);
 	param.mlx = mlx_init();
 	if (!init_param(&param, av[1]))
+	{
+		free_init_param(&param);
 		return (0);
+	}
 	param.img.image = mlx_new_image(param.mlx, param.width, param.height);
 	param.img.data = mlx_get_data_addr(param.img.image,
 			&param.img.bpp, &param.img.size_line, &param.img.endian);

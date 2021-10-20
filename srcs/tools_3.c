@@ -12,9 +12,9 @@
 
 #include "fdf.h"
 
-long double	ft_abs(long double a)
+double	ft_abs(double a)
 {
-	long double	abs;
+	double	abs;
 
 	abs = a;
 	if (abs > 0)

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 15:18:03 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/08 15:13:54 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/20 17:20:14 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,6 @@ size_t				ft_strcpy(char *dst, const char *src);
 void				print_tab(int *tab, int tab_len);
 
 long double			ft_atoi_ldb(const char *str);
+
+char				*ft_strjoin_free(char *src, const char *str);
 #endif
