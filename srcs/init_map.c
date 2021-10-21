@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 18:38:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 19:03:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 11:21:53 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init_map(t_map *map, char *file)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!map->data || !check_map_content(map->data))
+	if (!map->data || !check_map_content(*map))
 	{
 		free_matc(map->data);
 		return (0);
@@ -87,6 +87,8 @@ void	increase_params(t_map *map, char *line)
 {
 	if (map->max_width < ft_digitlen_in_str(line))
 		map->max_width = ft_digitlen_in_str(line);
+	if (map->min_width > ft_digitlen_in_str(line))
+		map->min_width = ft_digitlen_in_str(line);
 	map->height++;
 }
 

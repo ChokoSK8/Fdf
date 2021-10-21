@@ -6,7 +6,7 @@
 /*   By: codeur <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:21:58 by codeur            #+#    #+#             */
-/*   Updated: 2021/10/20 18:49:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 11:01:31 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@ int	init_param(t_param *param, char *file)
 	mlx_get_screen_size(param->mlx, &param->width, &param->height);
 	param->map.matd = char_to_double(param->map.data,
 			param->map.max_width, param);
+	free_matc(param->map.data);
 	if (!param->map.matd)
-	{
-		free_matc(param->map.data);
 		return (0);
-	}
 	init_param_len_and_coef(param);
 	param->z = assign_param_z(*param);
 	param->mat_pos = get_mat_pos(param->map, param->z);
 	if (!param->mat_pos)
 	{
-		free_matc(param->map.data);
+		free_matd(param->map.matd);
 		return (0);
 	}
 	return (1);

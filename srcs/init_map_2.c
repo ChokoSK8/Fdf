@@ -6,36 +6,32 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 18:41:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 18:43:57 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 11:10:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	check_map_content(char **matc)
+int	check_map_content(t_map map)
 {
 	t_point	pt;
-	int		x_max;
 
-	x_max = 0;
+	if (map.min_width <= 1 || map.max_width <= 1)
+		return (0);
 	pt.y = 0;
-	while (matc[pt.y])
+	while (map.data[pt.y])
 	{
 		pt.x = 0;
-		while (matc[pt.y][pt.x])
+		while (map.data[pt.y][pt.x])
 		{
-			if (matc[pt.y][pt.x] == ' ' || ft_isdigit(matc[pt.y][pt.x])
-					|| matc[pt.y][pt.x] == '+' || matc[pt.y][pt.x] == '-')
+			if (map.data[pt.y][pt.x] == ' ' || ft_isdigit(map.data[pt.y][pt.x])
+					|| map.data[pt.y][pt.x] == '+' || map.data[pt.y][pt.x] == '-')
 				pt.x++;
 			else
 				return (0);
 		}
-		if (x_max < pt.x)
-			x_max = pt.x;
 		pt.y++;
 	}
-	if (pt.y <= 1 || x_max <= 1)
-		return (0);
 	return (1);
 }
 

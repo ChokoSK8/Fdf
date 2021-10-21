@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:04:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 19:55:47 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 10:32:10 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	display_squares(t_img *img, t_ptdbl **mat_pos, t_param param)
 		pt.x = 0;
 		while (mat_pos[pt.y][pt.x].x != -1)
 		{
-			printf("pt : (%d, %d)\n", pt.x, pt.y);
 			print_diamonds(img, mat_pos, pt, disp);
 			pt.x++;
 		}
@@ -96,16 +95,16 @@ void	put_pixels(t_img *img, t_ptdbl pt, int config)
 		img->data[pos + 1] = 0;
 		img->data[pos + 2] = 0;
 	}
-	if (config == 1)
+	else if (config == 2)
 	{
 		img->data[pos] = 100;
 		img->data[pos + 1] = 100;
-		img->data[pos + 2] = 50;
+		img->data[pos + 2] = 10;
 	}
-	if (config == 2)
+	else
 	{
-		img->data[pos] = 50;
-		img->data[pos + 1] = 100;
+		img->data[pos] = 20;
+		img->data[pos + 1] = 10;
 		img->data[pos + 2] = 100;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:05:56 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 19:58:21 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 10:24:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ void	display_line(t_ptdbl apex_a, t_ptdbl apex_b, t_img *img)
 	dist = get_dist_btw_2_pts(apex_a, apex_b);
 	count = apex_a;
 	vect = get_vect_btw_2_pts(apex_a, apex_b);
-	printf("config : %d\n", config);
-	printf("dist : %f\n", dist);
 	while (get_dist_btw_2_pts(count, apex_a) < dist)
 	{
-		printf("hey\n");
 		put_pixels(img, count, config);
 		count = get_next_ptdbl(count, vect);
 	}

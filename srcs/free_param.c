@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:26:17 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 17:51:17 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 10:55:36 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	free_param(t_param *param)
 {
-	free_matc(param->map.data);
 	mlx_destroy_image(param->mlx, param->img.image);
 	free_matd(param->map.matd);
 	free_mat_pos(param->mat_pos);

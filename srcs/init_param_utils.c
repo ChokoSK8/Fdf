@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:53:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 19:06:39 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 11:04:29 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	get_map_ready(t_map *map)
 	map->data[0] = 0;
 	map->height = 0;
 	map->max_width = 0;
+	map->min_width = 2;
 	return (1);
 }
 

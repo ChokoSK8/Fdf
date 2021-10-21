@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/20 19:33:48 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 11:09:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_map
 	char		**data;
 	double		**matd;
 	size_t		max_width;
+	size_t		min_width;
 	size_t		height;
 }				t_map;
 
@@ -316,9 +317,11 @@ void	free_init_param(t_param *param);
 
 double	**div_matl(double **matl, t_param *param, int len);
 
-int		check_map_content(char **matc);
+int		check_map_content(t_map map);
 
 char	*get_next_line(int fd);
+
+void	assign_position(t_ptdbl *mat, t_point pt, double z, double altitude);
 
 void	ft_print_matl(double **m, int len);
 
