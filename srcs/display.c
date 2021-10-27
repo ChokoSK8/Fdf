@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:04:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/21 10:32:10 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 16:20:34 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	display_squares(t_img *img, t_ptdbl **mat_pos, t_param param)
 	while (mat_pos[pt.y])
 	{
 		pt.x = 0;
-		while (mat_pos[pt.y][pt.x].x != -1)
+		while (mat_pos[pt.y][pt.x].x != -4)
 		{
 			print_diamonds(img, mat_pos, pt, disp);
 			pt.x++;
@@ -60,7 +60,7 @@ void	print_diamonds(t_img *img, t_ptdbl **mat_pos,
 	t_apex		apex;
 	t_lines		lines;
 
-	if (mat_pos[pt.y + 1] && mat_pos[pt.y][pt.x + 1].x != -1)
+	if (mat_pos[pt.y + 1] && mat_pos[pt.y][pt.x + 1].x != -4)
 	{
 		apex.a = mat_pos[pt.y][pt.x];
 		apex.b = mat_pos[pt.y][pt.x + 1];

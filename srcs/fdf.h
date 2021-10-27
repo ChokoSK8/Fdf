@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:10:50 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/21 11:09:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:17:35 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,7 +323,5 @@ char	*get_next_line(int fd);
 
 void	assign_position(t_ptdbl *mat, t_point pt, double z, double altitude);
 
-void	ft_print_matl(double **m, int len);
-
-void	print_matc(char **m);
+int		init_param_matpos(t_ptdbl ***mat, size_t height, int *y);
 #endif

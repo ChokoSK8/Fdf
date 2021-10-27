@@ -6,7 +6,7 @@
 /*   By: codeur <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:21:58 by codeur            #+#    #+#             */
-/*   Updated: 2021/10/21 11:01:31 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:15:06 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ t_apex	get_apex_extrem(t_disp disp, t_map map)
 {
 	t_apex	apex;
 
-	apex.a.x = disp.origin.x + (-3) * disp.vect_x.x + (-3) * disp.vect_y.x;
-	apex.a.y = disp.origin.y + (-3) * disp.vect_x.y
-		+ (-3) * disp.vect_y.y;
-	apex.b.x = disp.origin.x + (map.max_width + 3) * disp.vect_x.x
-		+ (map.height + 3) * disp.vect_y.x;
-	apex.b.y = disp.origin.y + (map.max_width + 3) * disp.vect_x.y
-		+ (map.height + 3) * disp.vect_y.y;
-	apex.c.x = disp.origin.x + (-3) * disp.vect_x.x
-		+ (map.height + 3) * disp.vect_y.x;
-	apex.c.y = disp.origin.y + (-3) * disp.vect_x.y
-		+ (map.height + 3) * disp.vect_y.y;
-	apex.d.x = disp.origin.x + (map.max_width + 3) * disp.vect_x.x
-		+ (map.height + 3) * disp.vect_y.x;
-	apex.d.y = disp.origin.y + (map.max_width + 3) * disp.vect_x.y
-		+ (map.height + 3) * disp.vect_y.y;
+	apex.a.x = disp.origin.x + (-2.5) * disp.vect_x.x + (-2.5) * disp.vect_y.x;
+	apex.a.y = disp.origin.y + (-2.5) * disp.vect_x.y
+		+ (-2.5) * disp.vect_y.y;
+	apex.b.x = disp.origin.x + (map.max_width + 2.5) * disp.vect_x.x
+		+ (map.height + 2.5) * disp.vect_y.x;
+	apex.b.y = disp.origin.y + (map.max_width + 2.5) * disp.vect_x.y
+		+ (map.height + 2.5) * disp.vect_y.y;
+	apex.c.x = disp.origin.x + (-2.5) * disp.vect_x.x
+		+ (map.height + 2.5) * disp.vect_y.x;
+	apex.c.y = disp.origin.y + (-2.5) * disp.vect_x.y
+		+ (map.height + 2.5) * disp.vect_y.y;
+	apex.d.x = disp.origin.x + (map.max_width + 2.5) * disp.vect_x.x
+		+ (map.height + 2.5) * disp.vect_y.x;
+	apex.d.y = disp.origin.y + (map.max_width + 2.5) * disp.vect_x.y
+		+ (map.height + 2.5) * disp.vect_y.y;
 	return (apex);
 }
 

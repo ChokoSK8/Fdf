@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 18:38:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/21 11:21:53 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:16:38 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	init_map(t_map *map, char *file)
 int	init_map_param(t_map *map, char *file, char **line, int *fd)
 {
 	*fd = open(file, O_RDONLY);
-	if (!*fd)
+	if (*fd < 0)
 		return (0);
 	if (!get_map_ready(map))
 	{

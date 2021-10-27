@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:22:42 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/21 10:51:24 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:10:15 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_param		param;
 
-	if (ac < 2)
+	if (ac != 2)
 		return (0);
 	param.mlx = mlx_init();
 	if (!init_param(&param, av[1]))

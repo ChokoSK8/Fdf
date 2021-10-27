@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 18:41:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/21 11:10:19 by abrun            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:20:39 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ int	check_map_content(t_map map)
 		while (map.data[pt.y][pt.x])
 		{
 			if (map.data[pt.y][pt.x] == ' ' || ft_isdigit(map.data[pt.y][pt.x])
-					|| map.data[pt.y][pt.x] == '+' || map.data[pt.y][pt.x] == '-')
+					|| map.data[pt.y][pt.x] == '+'
+					|| map.data[pt.y][pt.x] == '-')
 				pt.x++;
 			else
 				return (0);
 		}
 		pt.y++;
 	}
+	if (pt.y < 2)
+		return (0);
 	return (1);
 }
 
